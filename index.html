@@ -1,2 +1,71 @@
-this is the site file 
 
+<!DOCTYPE html>
+  <head>
+  <title>Kiroku</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" integrity="sha512-rSWTr6dChYCbhpHaT1hg2tf4re2jUxBWTuZbujxKg96+T87KQJriMzBzW5aqcb8jmzBhhNSx4XYGA6/Y+ok1vQ==" crossorigin="anonymous" referrerpolicy="no-referrer" async />
+  <style>
+    html {
+      height: 100%;
+    }
+  </style>
+
+  </head>
+<body class="w-full h-full  bg-black text-zinc-50" style="font-family: Lato" >
+<div class="w-full h-full flex justify-center" >
+  <div class="w-full flex justify-center place-content-center" style="align-items: center;">
+    <div>
+    <section class="flex justify-center">
+  <h1 class="w-auto text-center text-2xl p-4 border" style="height: 68px;" >記録</h1>
+  
+  <div class="text-center h-8 text-3xl	align-middle leading-8 mt-4 mb-4 ml-2">Kiroku</div>
+  </section>
+  <section class="flex justify-center ">
+    <div class="w-full h-full flex-col flex justify-center mt-8" >
+      <button id="interest" class="text-zinc-300 pointer underline">Register Interest</button>
+      <form id="myForm" class="w-full h-full flex" style="display: none;">
+          <input type="email" name="Email" required placeholder="Email" class="bg-black border-zinc-400"/>
+        <input type="hidden" name="Created" value="x-sheetmonkey-current-date-time" />
+        <input type="submit" value="Sign Up" class="ml-2 p-2 border cursor-pointer" />
+      </form>
+      <p id="message"></p>
+    </div>
+
+  </section>
+  </div>
+</div>
+
+
+
+  </div>
+
+  <script lang="js">
+    document.getElementById('interest').addEventListener('click', () => {
+      document.getElementById('interest').style.display = 'none';
+      document.getElementById('myForm').style.display = 'block';
+    })
+    document.getElementById('myForm').addEventListener('submit', function(e) {
+  e.preventDefault(); // to prevent form from submitting in traditional way
+
+  // Prepare data to be sent
+  let data = new FormData(e.target);
+
+  fetch('https://api.sheetmonkey.io/form/3f7emo4yDEhBwCNsU8h3vG', {
+    method: 'POST',
+    body: data
+  })
+  .then(data => {
+    if (data) { // replace 'success' with actual key for a successful request
+      document.getElementById('message').textContent = 'Thank you for signing up!';
+      document.getElementById('myForm').style.display = 'none';
+    } else {
+      document.getElementById('message').textContent = 'Sorry, something went wrong. Please try again.';
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    document.getElementById('message').textContent = 'Sorry, something went wrong. Please try again.';
+  });
+});
+  </script>
+</body>
