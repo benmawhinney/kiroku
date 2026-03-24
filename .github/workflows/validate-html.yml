@@ -1,0 +1,29 @@
+name: Validate HTML
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Lint HTML files
+        run: |
+          set -e
+          files=$(git ls-files '*.html')
+          if [ -z "$files" ]; then
+            echo "No HTML files found."
+            exit 0
+          fi
+          echo "$files" | tr '\n' '\0' | xargs -0 npx --yes htmlhint
