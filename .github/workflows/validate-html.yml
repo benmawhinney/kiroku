@@ -9,6 +9,9 @@ on:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    env:
+      # Ensure JavaScript-based actions run on Node.js 24 where needed
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -16,7 +19,8 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          # Use Node.js 24 for linting and JS tools
+          node-version: "24"
 
       - name: Lint HTML files
         run: |
