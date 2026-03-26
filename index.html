@@ -284,37 +284,43 @@
   </div>
 
   <script>
-    const interestButton = document.getElementById('interest');
-    const form = document.getElementById('myForm');
-    const message = document.getElementById('message');
-    const year = document.getElementById('year');
+    window.addEventListener('DOMContentLoaded', () => {
+      const interestButton = document.getElementById('interest');
+      const form = document.getElementById('myForm');
+      const message = document.getElementById('message');
+      const year = document.getElementById('year');
 
-    year.textContent = new Date().getFullYear();
+      if (year) {
+        year.textContent = new Date().getFullYear();
+      }
 
-    interestButton.addEventListener('click', () => {
-      interestButton.style.display = 'none';
-      form.style.display = 'block';
-    });
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const data = new FormData(e.target);
-
-      fetch('https://api.sheetmonkey.io/form/bPBaxsjTc3jzMkn8euuerZ', {
-        method: 'POST',
-        body: data
-      })
-        .then((response) => {
-          if (response.ok) {
-            message.textContent = 'Thank you for signing up — I will be in touch.';
-            form.style.display = 'none';
-          } else {
-            message.textContent = 'Sorry, something went wrong. Please try again.';
-          }
-        })
-        .catch(() => {
-          message.textContent = 'Sorry, something went wrong. Please try again.';
+      if (interestButton && form) {
+        interestButton.addEventListener('click', () => {
+          interestButton.style.display = 'none';
+          form.style.display = 'block';
         });
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          const data = new FormData(e.target);
+
+          fetch('https://api.sheetmonkey.io/form/bPBaxsjTc3jzMkn8euuerZ', {
+            method: 'POST',
+            body: data
+          })
+            .then((response) => {
+              if (response.ok) {
+                if (message) message.textContent = 'Thank you for signing up — I will be in touch.';
+                form.style.display = 'none';
+              } else {
+                if (message) message.textContent = 'Sorry, something went wrong. Please try again.';
+              }
+            })
+            .catch(() => {
+              if (message) message.textContent = 'Sorry, something went wrong. Please try again.';
+            });
+        });
+      }
     });
   </script>
 </body>
