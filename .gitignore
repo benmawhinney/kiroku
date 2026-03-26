@@ -1,0 +1,21 @@
+# Node modules
+node_modules/
+
+# Local dev artifacts
+.DS_Store
+/.venv
+
+# Lighthouse reports
+kiroku-lighthouse.report*
+
+# Build outputs
+/dist
+/build
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# System files
+.idea/
+.vscode/
