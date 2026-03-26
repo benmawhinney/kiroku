@@ -1,84 +1,312 @@
-
 <!DOCTYPE html>
-  <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GTYPRNNXN6"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-GTYPRNNXN6');
-  </script>
-  <title>Kiroku</title>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kiroku — Recover. Modernise. Future-proof your website.</title>
+  <meta name="description" content="Kiroku helps organisations recover broken or outdated websites, modernise WordPress and Drupal platforms, and create systems that keep them stable long-term." />
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" integrity="sha512-rSWTr6dChYCbhpHaT1hg2tf4re2jUxBWTuZbujxKg96+T87KQJriMzBzW5aqcb8jmzBhhNSx4XYGA6/Y+ok1vQ==" crossorigin="anonymous" referrerpolicy="no-referrer" async />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    html {
-      height: 100%;
+    :root {
+      --brand-blue: #3da9fc;
+      --bg-navy: #0b1d2a;
+      --grid-line: #1e3a5f;
+      --muted-text: #a8c7df;
+      --heading-space: 0.02em;
     }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-navy); color: #e6eef6; }
+
+    /* Subtle grid background: 40px spacing, slightly lighter navy lines */
+    .hero-grid {
+      background-image:
+        linear-gradient(rgba(30,58,95,0.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30,58,95,0.12) 1px, transparent 1px);
+      background-size: 40px 40px;
+      background-color: var(--bg-navy);
+    }
+
+    /* Headings: slight letter-spacing for improved typography */
+    h1, h2, h3 { letter-spacing: var(--heading-space); }
+
+    /* Blue-themed components that replace previous emerald accents */
+    .badge-blue { border: 1px solid rgba(61,169,252,0.28); background-color: rgba(61,169,252,0.06); color: var(--brand-blue); }
+    .panel-blue { border: 1px solid rgba(61,169,252,0.18); background-color: rgba(61,169,252,0.06); color: #d8f2ff; }
+    .text-blue-muted { color: rgba(61,169,252,0.8); }
+
+    /* Buttons: blue outline with hover fill */
+    .btn-outline { border: 1px solid var(--brand-blue); color: var(--brand-blue); background: transparent; }
+    .btn-outline:hover, .btn-outline:focus { background: var(--brand-blue); color: var(--bg-navy); }
+    .btn-submit { border: 1px solid var(--brand-blue); color: var(--brand-blue); background: transparent; }
+    .btn-submit:hover { background: var(--brand-blue); color: var(--bg-navy); }
+
+    /* Keep interactive elements looking crisp */
+    a.btn-outline { text-decoration: none; }
+    input[type="submit"].btn-submit { font-weight: 600; }
+    .focus-blue:focus { outline: none; box-shadow: 0 0 0 4px rgba(61,169,252,0.12); border-color: var(--brand-blue); }
   </style>
+</head>
+<body class="bg-zinc-950 text-zinc-100 antialiased">
+  <div class="min-h-screen hero-grid">
+    <header class="border-b border-white/10 backdrop-blur-sm bg-zinc-950/80 sticky top-0 z-40">
+      <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="#top" class="flex items-center gap-3">
+          <span class="inline-flex h-11 w-11 items-center justify-center border border-white/20 text-lg font-semibold">記録</span>
+          <span>
+            <span class="block text-lg font-semibold tracking-wide">Kiroku</span>
+            <span class="block text-xs text-zinc-400">Digital systems, archives, resilience</span>
+          </span>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 text-sm text-zinc-300">
+          <a href="#services" class="hover:text-white">Services</a>
+          <a href="#approach" class="hover:text-white">Approach</a>
+          <a href="#work" class="hover:text-white">Work</a>
+          <a href="#contact" class="hover:text-white">Contact</a>
+        </nav>
+      </div>
+    </header>
 
-  </head>
-<body class="w-full h-full  bg-black text-zinc-50" style="font-family: Lato" >
-<div class="w-full h-full flex justify-center" >
-  <div class="w-full flex justify-center place-content-center" style="align-items: center;">
-    <div>
-    <section class="flex justify-center">
-  <h1 class="w-auto text-center text-2xl p-4 border" style="height: 68px;" >記録</h1>
-  
-  <div class="text-center h-8 text-3xl	align-middle leading-8 mt-4 mb-4 ml-2">Kiroku</div>
-  </section>
-  <section class="flex justify-center ">
-    <div class="w-full h-full flex-col flex justify-center mt-8" >
-      <button id="interest" class="text-zinc-300 pointer underline">Register Interest</button>
-      <form id="myForm" class="w-full h-full flex" style="display: none;">
-          <input type="email" name="Email" required placeholder="Email" class="bg-black border-zinc-400"/>
-        <input type="hidden" name="Created" value="x-sheetmonkey-current-date-time" />
-        <input type="submit" value="Sign Up" class="ml-2 p-2 border cursor-pointer" />
-      </form>
-      <p id="message"></p>
-    </div>
+    <main id="top">
+      <section class="max-w-6xl mx-auto px-6 pt-20 pb-16 lg:pt-28 lg:pb-24">
+        <div class="grid lg:grid-cols-[1.35fr_0.85fr] gap-14 items-start">
+          <div>
+            <div class="inline-flex items-center rounded-full px-4 py-2 text-sm mb-6 badge-blue">
+              Calm, reliable web infrastructure for real organisations
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight max-w-4xl">
+              Recover. Modernise. Future-proof your website.
+            </h1>
+            <p class="mt-6 text-lg md:text-xl text-zinc-300 max-w-3xl leading-8">
+              Kiroku helps organisations rescue broken or outdated websites, rebuild them on modern platforms, and create systems that keep them stable, fast, and easy to manage long-term.
+            </p>
+            <div class="mt-8 flex flex-col sm:flex-row gap-4">
+              <a href="#contact" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold transition btn-outline">Get in touch</a>
+              <a href="#services" class="inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold transition btn-outline">View services</a>
+            </div>
+            <div class="mt-10 grid sm:grid-cols-3 gap-4 text-sm">
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <div class="text-zinc-400">Focus</div>
+                <div class="mt-1 font-semibold">WordPress recovery</div>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <div class="text-zinc-400">Capability</div>
+                <div class="mt-1 font-semibold">Drupal modernisation</div>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <div class="text-zinc-400">Approach</div>
+                <div class="mt-1 font-semibold">Systems that last</div>
+              </div>
+            </div>
+          </div>
 
-  </section>
+          <aside class="rounded-3xl border border-white/10 bg-white/5 p-7 shadow-2xl shadow-black/20">
+            <div class="text-sm uppercase tracking-[0.2em] text-zinc-400">What Kiroku does</div>
+            <div class="mt-6 space-y-5">
+              <div>
+                <h2 class="font-semibold text-lg">Recover</h2>
+                <p class="mt-1 text-zinc-300 text-sm leading-6">Fix broken websites, failed updates, inaccessible admin areas, and fragile legacy setups.</p>
+              </n>
+              <div>
+                <h2 class="font-semibold text-lg">Rebuild</h2>
+                <p class="mt-1 text-zinc-300 text-sm leading-6">Clean up themes, simplify infrastructure, improve performance, and modernise workflows.</p>
+              </div>
+              <div>
+                <h2 class="font-semibold text-lg">Maintain</h2>
+                <p class="mt-1 text-zinc-300 text-sm leading-6">Create version-controlled, documented systems so your website stays easy to update.</p>
+              </div>
+            </div>
+            <div class="mt-8 rounded-3xl p-4 text-sm panel-blue">
+              Built for organisations that need calm, competent support — not more technical chaos.
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="services" class="max-w-6xl mx-auto px-6 py-16 border-t border-white/10">
+        <div class="max-w-2xl">
+          <p class="text-sm uppercase tracking-[0.2em] text-zinc-500">Services</p>
+          <h2 class="mt-3 text-3xl md:text-4xl font-bold tracking-tight">Practical help for broken, ageing, or hard-to-manage websites.</h2>
+          <p class="mt-4 text-zinc-300 leading-8">The work sits at the intersection of recovery, modernisation, and long-term maintainability.</p>
+        </div>
+
+        <div class="mt-10 grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+          <article class="rounded-3xl border border-white/10 bg-white/5 p-6">
+            <h3 class="text-xl font-semibold">Website Recovery</h3>
+            <ul class="mt-4 space-y-2 text-sm text-zinc-300 leading-6">
+              <li>Fix broken WordPress updates</li>
+              <li>Restore inaccessible sites</li>
+              <li>Debug themes and plugins</li>
+              <li>Emergency stabilisation</li>
+            </ul>
+          </article>
+
+          <article class="rounded-3xl border border-white/10 bg-white/5 p-6">
+            <h3 class="text-xl font-semibold">Performance &amp; Stability</h3>
+            <ul class="mt-4 space-y-2 text-sm text-zinc-300 leading-6">
+              <li>Theme and plugin clean-up</li>
+              <li>Child theme and update strategy</li>
+              <li>Speed and reliability improvements</li>
+              <li>Hosting and configuration advice</li>
+            </ul>
+          </article>
+
+          <article class="rounded-3xl border border-white/10 bg-white/5 p-6">
+            <h3 class="text-xl font-semibold">Platform Modernisation</h3>
+            <ul class="mt-4 space-y-2 text-sm text-zinc-300 leading-6">
+              <li>Legacy WordPress improvement</li>
+              <li>Drupal upgrade pathways</li>
+              <li>Replatforming strategy</li>
+              <li>Maintainable rebuilds</li>
+            </ul>
+          </article>
+
+          <article class="rounded-3xl border border-white/10 bg-white/5 p-6">
+            <h3 class="text-xl font-semibold">Content &amp; SEO Foundations</h3>
+            <ul class="mt-4 space-y-2 text-sm text-zinc-300 leading-6">
+              <li>Technical SEO fixes</li>
+              <li>Publishing workflow improvements</li>
+              <li>Information architecture clean-up</li>
+              <li>Performance-aware content systems</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="approach" class="max-w-6xl mx-auto px-6 py-16 border-t border-white/10">
+        <div class="grid lg:grid-cols-2 gap-12 items-start">
+          <div>
+            <p class="text-sm uppercase tracking-[0.2em] text-zinc-500">Approach</p>
+            <h2 class="mt-3 text-3xl md:text-4xl font-bold tracking-tight">A different approach to web work.</h2>
+            <p class="mt-5 text-zinc-300 leading-8">
+              Kiroku is built around a simple idea: a website should not be a fragile black box. It should be understandable, documented, version-controlled where appropriate, and easy to keep current.
+            </p>
+            <p class="mt-4 text-zinc-300 leading-8">
+              The aim is not just to make websites look better, but to make them calmer to operate — more resilient, more maintainable, and more useful over time.
+            </p>
+          </div>
+          <div class="grid gap-4">
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <div class="text-zinc-400 text-sm">01</div>
+              <h3 class="mt-1 font-semibold text-lg">Recover</h3>
+              <p class="mt-2 text-sm text-zinc-300 leading-6">Diagnose what is broken, restore service, and reduce immediate risk.</p>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <div class="text-zinc-400 text-sm">02</div>
+              <h3 class="mt-1 font-semibold text-lg">Rebuild</h3>
+              <p class="mt-2 text-sm text-zinc-300 leading-6">Replace fragile setups with simpler structures, cleaner code, and better workflows.</p>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <div class="text-zinc-400 text-sm">03</div>
+              <h3 class="mt-1 font-semibold text-lg">Maintain</h3>
+              <p class="mt-2 text-sm text-zinc-300 leading-6">Leave behind a system that can be updated with confidence rather than fear.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="work" class="max-w-6xl mx-auto px-6 py-16 border-t border-white/10">
+        <div class="max-w-2xl">
+          <p class="text-sm uppercase tracking-[0.2em] text-zinc-500">Recent work</p>
+          <h2 class="mt-3 text-3xl md:text-4xl font-bold tracking-tight">Practical outcomes, not just ideas.</h2>
+        </div>
+
+        <div class="mt-10 rounded-3xl border border-white/10 bg-gradient-to-br from-white/8 to-white/3 p-8">
+          <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
+            <div class="max-w-3xl">
+              <div class="text-sm uppercase tracking-[0.2em] text-blue-muted">Case Study 001</div>
+              <h3 class="mt-3 text-2xl font-semibold">WordPress recovery and stabilisation</h3>
+              <p class="mt-4 text-zinc-300 leading-8">
+                Recovered a client website following failed updates, restored stability, and established a safer workflow using a child theme and version control. The result was not just a working site, but a more repeatable and maintainable way to keep it up to date.
+              </p>
+            </div>
+            <div class="lg:w-72 rounded-2xl border border-white/10 bg-black/20 p-5 text-sm">
+              <div class="text-zinc-400">Outcome</div>
+              <ul class="mt-3 space-y-2 text-zinc-200 leading-6">
+                <li>Site restored</li>
+                <li>Update process stabilised</li>
+                <li>Foundation for long-term maintenance</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="max-w-6xl mx-auto px-6 py-16 border-t border-white/10">
+        <div class="grid lg:grid-cols-[1fr_0.9fr] gap-10 items-start">
+          <div>
+            <p class="text-sm uppercase tracking-[0.2em] text-zinc-500">Contact</p>
+            <h2 class="mt-3 text-3xl md:text-4xl font-bold tracking-tight">Let’s take a look at your site.</h2>
+            <p class="mt-5 text-zinc-300 leading-8 max-w-2xl">
+              If your website is broken, slow, outdated, or simply difficult to manage, Kiroku can help you get it back under control.
+            </p>
+          </div>
+
+          <div class="rounded-3xl border border-white/10 bg-white/5 p-7">
+            <p class="text-sm text-zinc-400">Simple contact form</p>
+            <button id="interest" class="mt-5 inline-flex w-full items-center justify-center rounded-xl px-5 py-3 font-semibold btn-outline">Register interest</button>
+            <form id="myForm" class="mt-5 space-y-4" style="display: none;">
+              <label class="block">
+                <span class="mb-2 block text-sm text-zinc-300">Email address</span>
+                <input type="email" name="Email" required placeholder="you@example.com" class="w-full rounded-xl border border-white/15 bg-zinc-950 px-4 py-3 text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus-blue" />
+              </label>
+              <input type="hidden" name="Created" value="x-sheetmonkey-current-date-time" />
+              <input type="submit" value="Sign Up" class="w-full rounded-xl px-5 py-3 font-semibold cursor-pointer btn-submit" />
+            </form>
+            <p id="message" class="mt-4 text-sm text-blue-muted"></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-white/10">
+      <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-sm text-zinc-400">
+        <div>© <span id="year"></span> Kiroku. Built for calm, reliable digital systems.</div>
+        <div class="flex gap-5">
+          <a href="#top" class="hover:text-white">Top</a>
+          <a href="#services" class="hover:text-white">Services</a>
+          <a href="#contact" class="hover:text-white">Contact</a>
+        </div>
+      </div>
+    </footer>
   </div>
-</div>
 
+  <script>
+    const interestButton = document.getElementById('interest');
+    const form = document.getElementById('myForm');
+    const message = document.getElementById('message');
+    const year = document.getElementById('year');
 
+    year.textContent = new Date().getFullYear();
 
-  </div>
+    interestButton.addEventListener('click', () => {
+      interestButton.style.display = 'none';
+      form.style.display = 'block';
+    });
 
-  <footer class="w-full text-center text-zinc-500 text-xs p-4 absolute bottom-0">
-    &copy; 2024&ndash;2026 Kiroku &mdash; GitHub Pages v1.0
-  </footer>
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const data = new FormData(e.target);
 
-  <script lang="js">
-    document.getElementById('interest').addEventListener('click', () => {
-      document.getElementById('interest').style.display = 'none';
-      document.getElementById('myForm').style.display = 'block';
-    })
-    document.getElementById('myForm').addEventListener('submit', function(e) {
-  e.preventDefault(); // to prevent form from submitting in traditional way
-
-  // Prepare data to be sent
-  let data = new FormData(e.target);
-
-  fetch('https://api.sheetmonkey.io/form/3f7emo4yDEhBwCNsU8h3vG', {
-    method: 'POST',
-    body: data
-  })
-  .then(data => {
-    if (data) { // replace 'success' with actual key for a successful request
-      document.getElementById('message').textContent = 'Thank you for signing up!';
-      document.getElementById('myForm').style.display = 'none';
-    } else {
-      document.getElementById('message').textContent = 'Sorry, something went wrong. Please try again.';
-    }
-  })
-  .catch(error => {
-    console.error('Error:', error);
-    document.getElementById('message').textContent = 'Sorry, something went wrong. Please try again.';
-  });
-});
+      fetch('https://api.sheetmonkey.io/form/3f7emo4yDEhBwCNsU8h3vG', {
+        method: 'POST',
+        body: data
+      })
+        .then((response) => {
+          if (response.ok) {
+            message.textContent = 'Thank you for signing up — I will be in touch.';
+            form.style.display = 'none';
+          } else {
+            message.textContent = 'Sorry, something went wrong. Please try again.';
+          }
+        })
+        .catch(() => {
+          message.textContent = 'Sorry, something went wrong. Please try again.';
+        });
+    });
   </script>
 </body>
+</html>
