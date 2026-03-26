@@ -6,10 +6,17 @@
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   <title>Kiroku — Recover. Modernise. Future-proof your website.</title>
   <meta name="description" content="Kiroku helps organisations recover broken or outdated websites, modernise WordPress and Drupal platforms, and create systems that keep them stable long-term." />
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preload" href="/styles.css" as="style" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/styles.css"></noscript>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Local font preloads (will be populated by tools/generate_subset_fonts.sh) -->
+  <link rel="preload" href="/assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter-700.woff2" as="font" type="font/woff2" crossorigin>
+  <noscript><!-- fallback to Google Fonts if local fonts unavailable -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  </noscript>
   <!-- Favicons: light/dark SVGs selected by prefers-color-scheme -->
   <link rel="icon" href="/favicon-light.svg" media="(prefers-color-scheme: light)">
   <link rel="icon" href="/favicon-dark.svg" media="(prefers-color-scheme: dark)">
@@ -23,8 +30,34 @@
       --heading-space: 0.02em;
     }
 
+    /* Local @font-face rules (fallback to Google Fonts if assets missing) */
+    @font-face {
+      font-family: 'InterLocal';
+      src: url('/assets/fonts/inter-400.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+      font-variation-settings: 'wght' 400;
+    }
+    @font-face {
+      font-family: 'InterLocal';
+      src: url('/assets/fonts/inter-600.woff2') format('woff2');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+      font-variation-settings: 'wght' 600;
+    }
+    @font-face {
+      font-family: 'InterLocal';
+      src: url('/assets/fonts/inter-700.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+      font-variation-settings: 'wght' 700;
+    }
+
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-navy); color: #e6eef6; }
+    body { font-family: 'InterLocal', 'Inter', system-ui, sans-serif; background-color: var(--bg-navy); color: #e6eef6; }
 
     /* Subtle grid background: 40px spacing, slightly lighter navy lines */
     .hero-grid {
@@ -273,7 +306,7 @@
 
     <footer class="border-t border-white/10">
       <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-sm text-zinc-400">
-        <div>© 2024-2026 Kiroku v1.0.5. Built for calm, reliable digital systems.</div>
+        <div>© 2024-2026 Kiroku v1.0.6. Built for calm, reliable digital systems.</div>
         <div class="flex gap-5">
           <a href="#top" class="hover:text-white">Top</a>
           <a href="#services" class="hover:text-white">Services</a>
