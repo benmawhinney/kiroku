@@ -6,10 +6,16 @@
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   <title>Kiroku — Recover. Modernise. Future-proof your website.</title>
   <meta name="description" content="Kiroku helps organisations recover broken or outdated websites, modernise WordPress and Drupal platforms, and create systems that keep them stable long-term." />
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Production CSS built from Tailwind; replaces CDN usage. -->
+  <link rel="stylesheet" href="/assets/styles.css">
+
+  <!-- Load Google Fonts non-blocking: preload the stylesheet then switch to stylesheet onload -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  </noscript>
   <!-- Favicons: light/dark SVGs selected by prefers-color-scheme -->
   <link rel="icon" href="/favicon-light.svg" media="(prefers-color-scheme: light)">
   <link rel="icon" href="/favicon-dark.svg" media="(prefers-color-scheme: dark)">
@@ -273,7 +279,7 @@
 
     <footer class="border-t border-white/10">
       <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-sm text-zinc-400">
-        <div>© <span id="year"></span> Kiroku. Built for calm, reliable digital systems.</div>
+        <div>© <span id="year"></span> Kiroku. Built for calm, reliable digital systems. <span class="ml-2 text-xs text-zinc-500">v1.1</span></div>
         <div class="flex gap-5">
           <a href="#top" class="hover:text-white">Top</a>
           <a href="#services" class="hover:text-white">Services</a>
