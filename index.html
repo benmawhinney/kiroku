@@ -50,9 +50,9 @@
       --brand-blue-2: #7dd3fc;
       --brand-blue-3: #2563eb;
       /* LED edge variables */
-      --led-thickness: 2px; /* visual thickness of the moving edge */
-      --led-opacity: 0.12; /* base opacity when idle */
-      --led-hover-opacity: 0.20; /* opacity on hover/focus */
+      --led-thickness: 3px; /* visual thickness of the moving edge */
+      --led-opacity: 0.30; /* base opacity when idle */
+      --led-hover-opacity: 0.75; /* opacity on hover/focus */
       --led-speed: 3.2s; /* LED chase duration (slow and smooth) */
       --led-colors: #3da9fc 0%, #7dd3fc 40%, #2563eb 80%, #3b2efc 100%;
     }
@@ -148,15 +148,13 @@
       opacity: var(--led-opacity);
       pointer-events: none;
       transform: translateZ(0);
-      transition: opacity 220ms var(--interaction-ease);
-      animation: led-move var(--led-speed) linear infinite;
-      animation-play-state: paused;
+      transition: opacity 200ms var(--interaction-ease);
     }
 
     .neon-interactive:hover::before,
     .neon-interactive:focus-visible::before {
       opacity: var(--led-hover-opacity);
-      animation-play-state: running;
+      animation: led-move var(--led-speed) linear infinite;
     }
 
     /* Ensure all interactive anchors/buttons in nav/footer and primary CTAs share the same radius */
@@ -236,16 +234,14 @@
       border-radius: 2px;
       transition: opacity 260ms var(--interaction-ease);
       transform: translateZ(0);
-      animation: led-move var(--led-speed) linear infinite;
-      animation-play-state: paused;
     }
 
     :is(div,section,article).border.rounded-2xl:hover::before,
     :is(div,section,article).border.rounded-3xl:hover::before,
     :is(div,section,article).border.rounded-2xl:focus-visible::before,
     :is(div,section,article).border.rounded-3xl:focus-visible::before {
-      opacity: 0.12;
-      animation-play-state: running;
+      opacity: 0.35;
+      animation: led-move var(--led-speed) linear infinite;
     }
 
     /* Keyframes: smooth linear LED movement (background-position) */

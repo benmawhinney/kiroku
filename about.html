@@ -58,10 +58,10 @@
     }
 
     /* LED edge variables (kept local to the page to avoid cascades) */
-    :root { --led-thickness: 2px; --led-opacity: 0.12; --led-hover-opacity: 0.18; --led-speed: 3.2s; --led-colors: #3da9fc 0%, #7dd3fc 40%, #2563eb 80%, #3b2efc 100%; }
+    :root { --led-thickness: 3px; --led-opacity: 0.30; --led-hover-opacity: 0.75; --led-speed: 3.2s; --led-colors: #3da9fc 0%, #7dd3fc 40%, #2563eb 80%, #3b2efc 100%; }
 
-    .neon-interactive::before { content: ''; position: absolute; left: 8%; right: 8%; bottom: -1px; height: var(--led-thickness); border-radius: 4px; background: linear-gradient(90deg, var(--led-colors)); background-size: 300% 100%; opacity: var(--led-opacity); pointer-events: none; transform: translateZ(0); transition: opacity 220ms cubic-bezier(0.22,1,0.36,1); animation: led-move var(--led-speed) linear infinite; animation-play-state: paused; }
-    .neon-interactive:hover::before, .neon-interactive:focus-visible::before { opacity: var(--led-hover-opacity); animation-play-state: running; }
+    .neon-interactive::before { content: ''; position: absolute; left: 8%; right: 8%; bottom: -1px; height: var(--led-thickness); border-radius: 4px; background: linear-gradient(90deg, var(--led-colors)); background-size: 300% 100%; opacity: var(--led-opacity); pointer-events: none; transform: translateZ(0); transition: opacity 200ms cubic-bezier(0.22,1,0.36,1); }
+    .neon-interactive:hover::before, .neon-interactive:focus-visible::before { opacity: var(--led-hover-opacity); animation: led-move var(--led-speed) linear infinite; }
 
     @keyframes led-move { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
 
