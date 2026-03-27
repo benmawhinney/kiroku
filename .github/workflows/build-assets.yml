@@ -1,0 +1,45 @@
+name: Build assets
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-commit:
+    name: Build CSS and commit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: |
+          npm ci
+
+      - name: Build CSS
+        run: |
+          npm run build:css
+
+      - name: Commit and push built assets
+        env:
+          GIT_COMMITTER_NAME: github-actions[bot]
+          GIT_COMMITTER_EMAIL: github-actions[bot]@users.noreply.github.com
+        run: |
+          git config user.name "$GIT_COMMITTER_NAME"
+          git config user.email "$GIT_COMMITTER_EMAIL"
+          if ! git diff --quiet -- ./styles.css; then
+            git add styles.css
+            git commit -m "chore(ci): build styles.css [skip ci]"
+            git push
+          else
+            echo "styles.css unchanged"
+          fi

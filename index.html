@@ -6,6 +6,18 @@
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
   <title>Kiroku — Recover. Modernise. Future-proof your website.</title>
   <meta name="description" content="Kiroku helps organisations recover broken or outdated websites, modernise WordPress and Drupal platforms, and create systems that keep them stable long-term." />
+  <!-- Inline critical CSS: minimal styles for above-the-fold rendering -->
+  <style id="critical-css"> 
+    :root{--bg-navy:#0b1d2a}
+    html{height:100%}
+    body{min-height:100%;margin:0;background:var(--bg-navy);color:#e6eef6;font-family:InterLocal,Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+    .hero-grid{background-image:linear-gradient(rgba(30,58,95,0.12) 1px,transparent 1px),linear-gradient(90deg,rgba(30,58,95,0.12) 1px,transparent 1px);background-size:40px 40px;background-color:var(--bg-navy)}
+    header{position:sticky;top:0;background:rgba(11,29,42,0.8);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.06)}
+    h1{font-weight:800;font-size:2.25rem;line-height:1.05;margin:0}
+    .btn-outline{border:1px solid #3da9fc;color:#3da9fc;background:transparent;padding:.75rem 1.25rem;border-radius:0.75rem;display:inline-block}
+    .neon-interactive{transition:box-shadow .18s ease,border-color .18s ease}
+    .neon-interactive:focus,.neon-interactive:hover{box-shadow:0 12px 30px rgba(61,169,252,0.10);border-color:#3da9fc}
+  </style>
   <link rel="preload" href="/styles.css" as="style" onload="this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="/styles.css"></noscript>
   <link rel="preconnect" href="https://fonts.googleapis.com">
