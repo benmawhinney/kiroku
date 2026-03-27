@@ -1,5 +1,8 @@
 name: Build assets
 
+permissions:
+  contents: write
+
 on:
   push:
     branches: [ main ]
