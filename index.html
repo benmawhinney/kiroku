@@ -114,57 +114,96 @@
     input[type="submit"].btn-submit { font-weight: 600; }
     .focus-blue:focus { outline: none; box-shadow: 0 0 0 4px rgba(61,169,252,0.12); border-color: var(--brand-blue); }
 
-    /* Neon interactive accent for navigation and primary CTAs */
+    /* ============================================================
+       INTERACTION SYSTEM — three distinct roles
+         1. NAV LINKS   — LED signal only (no button border/glow)
+         2. CTAs        — neon button (border + glow, no LED)
+         3. PANELS      — lift + trace + top LED (rules below)
+       ============================================================ */
+
+    /* --- BASE: structural only; shared by all three roles --- */
     .neon-interactive {
-      border: 1px solid transparent;
+      border: 1px solid transparent; /* layout placeholder, keeps sizing stable */
       box-sizing: border-box;
       border-radius: var(--radius-lg);
-      transition: border-color var(--interaction-dur) var(--interaction-ease), box-shadow var(--interaction-dur) var(--interaction-ease);
       -webkit-tap-highlight-color: transparent;
-      position: relative; /* for pseudo-element LED */
+      position: relative;
       isolation: isolate;
+      transition:
+        border-color var(--interaction-dur) var(--interaction-ease),
+        box-shadow   var(--interaction-dur) var(--interaction-ease);
     }
 
-    /* HDR-feel: keep glow tight, add a crisp inner edge and subtle outer falloff */
-    .neon-interactive:hover,
-    .neon-interactive:focus-visible {
-      border-color: var(--brand-blue);
-      box-shadow:
-        inset 0 0 0 1px rgba(125,211,252,0.10), /* tight inner highlight */
-        0 10px 20px rgba(61,169,252,0.08),    /* softer outer falloff (reduced spread) */
-        0 4px 10px rgba(37,99,235,0.04);
+    /* Consistent radius for all interactive elements */
+    header a, header button, footer a, footer button, .btn-outline, .btn-submit {
+      border-radius: var(--radius-lg);
+    }
+
+    /* ---- 1. NAV LINKS: LED is the sole interaction signal ---- */
+    header a.neon-interactive,
+    footer a.neon-interactive {
+      padding: 0.3rem 0.55rem;
+    }
+
+    /* On hover: no border glow, no box-shadow — keep border transparent */
+    header a.neon-interactive:hover,
+    header a.neon-interactive:focus-visible,
+    footer a.neon-interactive:hover,
+    footer a.neon-interactive:focus-visible {
+      border-color: transparent;
+      box-shadow: none;
       outline: none;
     }
 
-    /* LED chase bar (nav links and CTAs) - partial/short edge */
-    .neon-interactive::before {
+    /* Nav LED bar: bottom edge, short span, hidden at rest */
+    header a.neon-interactive::before,
+    footer a.neon-interactive::before {
       content: '';
       position: absolute;
-      left: 6%; right: 6%; bottom: -1px; /* slightly outside border for crisp edge */
+      left: 10%; right: 10%; bottom: -1px;
       height: var(--led-thickness);
       border-radius: calc(var(--radius-lg) / 2);
       background: linear-gradient(90deg, var(--led-colors));
       background-size: 300% 100%;
-      opacity: var(--led-opacity);
+      opacity: 0;
       pointer-events: none;
       transform: translateZ(0);
       transition: opacity 200ms var(--interaction-ease);
     }
 
-    .neon-interactive:hover::before,
-    .neon-interactive:focus-visible::before {
-      opacity: var(--led-hover-opacity);
+    header a.neon-interactive:hover::before,
+    header a.neon-interactive:focus-visible::before,
+    footer a.neon-interactive:hover::before,
+    footer a.neon-interactive:focus-visible::before {
+      opacity: 0.70;
       animation: led-move var(--led-speed) linear infinite;
     }
 
-    /* Ensure all interactive anchors/buttons in nav/footer and primary CTAs share the same radius */
-    header a, header button, footer a, footer button, .btn-outline, .btn-submit {
-      border-radius: var(--radius-lg);
+    /* ---- 2. CTAs: neon glow button; NO LED bar ---- */
+
+    /* .btn-outline (does not use neon-interactive — add glow here) */
+    .btn-outline:hover,
+    .btn-outline:focus-visible {
+      box-shadow:
+        inset 0 0 0 1px rgba(125,211,252,0.14),
+        0 10px 22px rgba(61,169,252,0.12),
+        0 4px 10px rgba(37,99,235,0.06);
+      outline: none;
     }
 
-    /* Nav/footer link padding — keep glow border from overlapping text */
-    header a.neon-interactive, footer a.neon-interactive {
-      padding: 0.3rem 0.55rem;
+    /* btn-submit uses neon-interactive — suppress LED, apply glow */
+    .btn-submit::before {
+      display: none;
+    }
+
+    .btn-submit.neon-interactive:hover,
+    .btn-submit.neon-interactive:focus-visible {
+      border-color: var(--brand-blue);
+      box-shadow:
+        inset 0 0 0 1px rgba(125,211,252,0.14),
+        0 10px 22px rgba(61,169,252,0.12),
+        0 4px 10px rgba(37,99,235,0.06);
+      outline: none;
     }
 
     /* Panel interaction: subtle lift, border brighten, soft glow, slight brighten, and blueprint trace */
