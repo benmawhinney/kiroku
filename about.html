@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <title>About / Approach — Kiroku</title>
+  <meta name="description" content="Kiroku: pragmatic, maintainable websites focused on performance, reliability and clarity." />
+  <link rel="preload" href="/styles.css" as="style" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/styles.css"></noscript>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter-700.woff2" as="font" type="font/woff2" crossorigin>
+  <noscript><!-- fallback to Google Fonts if local fonts unavailable -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  </noscript>
+  <link rel="icon" href="/favicon-light.svg" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="/favicon-dark.svg" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="/favicon-dark.svg">
+  <style>
+    /* replicate the small set of page styles from index.html */
+    :root { --bg-navy: #0b1d2a; --heading-space: 0.02em; }
+    @font-face { font-family: 'InterLocal'; src: url('/assets/fonts/inter-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'InterLocal'; src: url('/assets/fonts/inter-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'InterLocal'; src: url('/assets/fonts/inter-700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'InterLocal', 'Inter', system-ui, sans-serif; background-color: var(--bg-navy); color: #e6eef6; }
+    h1, h2, h3 { letter-spacing: var(--heading-space); }
+  </style>
+</head>
+<body class="bg-zinc-950 text-zinc-100 antialiased">
+  <div class="min-h-screen">
+    <header class="border-b border-white/10 backdrop-blur-sm bg-zinc-950/80 sticky top-0 z-40">
+      <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-3">
+          <span class="inline-flex h-11 w-11 items-center justify-center border border-white/20 text-lg font-semibold">記録</span>
+          <span>
+            <span class="block text-lg font-semibold tracking-wide">Kiroku</span>
+            <span class="block text-xs text-zinc-400">Digital systems, archives, resilience</span>
+          </span>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 text-sm text-zinc-300">
+          <a href="index.html" class="hover:text-white">Home</a>
+          <a href="index.html#services" class="hover:text-white">Services</a>
+          <a href="about.html" class="hover:text-white">About</a>
+          <a href="index.html#contact" class="hover:text-white">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="max-w-6xl mx-auto px-6 pt-20 pb-16 lg:pt-28 lg:pb-24">
+        <div class="max-w-2xl">
+          <h2 class="mt-3 text-3xl md:text-4xl font-bold tracking-tight">About / Approach</h2>
+          <p class="mt-6 text-zinc-300 leading-8">
+            Most websites do not start out complicated — they become that way over time.
+          </p>
+          <p class="mt-4 text-zinc-300 leading-8">
+            Features are added, systems are extended, and small decisions accumulate. As people move on and updates are missed, knowledge is lost. What was once manageable becomes harder to understand, harder to change, and more expensive to maintain.
+          </p>
+          <p class="mt-4 text-zinc-300 leading-8">
+            This is a form of entropy. Without deliberate effort, systems tend towards complexity.
+          </p>
+          <p class="mt-4 text-zinc-300 leading-8">
+            Kiroku is built around counteracting that.
+          </p>
+          <p class="mt-4 text-zinc-300 leading-8">
+            Start with the problem, not the technology. Choose tools that are appropriate, not excessive. Favour clarity over cleverness, and design systems that can be understood and maintained without unnecessary layers.
+          </p>
+          <p class="mt-4 text-zinc-300 leading-8">
+            Performance and efficiency follow naturally. Lighter systems are faster. Simpler architectures are more reliable. Infrastructure that reflects actual usage is more cost-effective.
+          </p>
+          <p class="mt-4 text-zinc-300 leading-8">
+            Just as importantly, simpler systems reduce mental load. When a website is clear and predictable, it requires less attention, less firefighting, and less specialist knowledge to keep it working. That matters — especially for businesses where time and focus are limited resources.
+          </p>
+          <p class="mt-4 text-zinc-300 leading-8">
+            This approach applies across different types of projects — from straightforward brochure sites to more complex platforms handling significant traffic and transactions. The underlying principle remains the same: build what is needed, and no more.
+          </p>
+          <p class="mt-4 text-zinc-300 leading-8">
+            Technology continues to evolve, and new tools appear constantly. Some are genuinely useful. Many are not. The challenge is not to adopt everything, but to apply critical thinking — to understand which changes have real impact, and which add unnecessary complexity.
+          </p>
+          <p class="mt-4 text-zinc-300 leading-8">
+            Kiroku takes an approach of innovation with intent. New technologies are adopted where they improve outcomes — performance, efficiency, reliability — and avoided where they do not.
+          </p>
+          <p class="mt-4 text-zinc-300 leading-8">
+            This is not about resisting change, nor chasing it. It is about using it carefully.
+          </p>
+          <p class="mt-4 text-zinc-300 leading-8">
+            The goal is always the same: create systems that work well, continue to work, and do not become a burden to maintain.
+          </p>
+          <p class="mt-4 text-zinc-300 leading-8">
+            Good systems are not defined by how much they can do, but by how well they do what is actually required.
+          </p>
+        </div>
+      </section>
+
+      <section id="contact" class="max-w-6xl mx-auto px-6 py-16 border-t border-white/10">
+        <div class="grid lg:grid-cols-[1fr_0.9fr] gap-10 items-start">
+          <div>
+            <p class="text-sm uppercase tracking-[0.2em] text-zinc-500">Contact</p>
+            <h2 class="mt-3 text-3xl md:text-4xl font-bold tracking-tight">Let’s take a look at your site.</h2>
+            <p class="mt-5 text-zinc-300 leading-8 max-w-2xl">If your website is broken, slow, outdated, or simply difficult to manage, Kiroku can help you get it back under control.</p>
+          </div>
+
+          <div class="rounded-3xl border border-white/10 bg-white/5 p-7">
+            <p class="text-sm text-zinc-400">Simple contact form</p>
+            <button id="interest" class="mt-5 inline-flex w-full items-center justify-center rounded-xl px-5 py-3 font-semibold btn-outline">Register interest</button>
+            <form id="myForm" action="https://api.sheetmonkey.io/form/bPBaxsjTc3jzMkn8euuerZ" method="post" class="mt-5 space-y-4" style="display: none;">
+              <label class="block">
+                <span class="mb-2 block text-sm text-zinc-300">Your name</span>
+                <input type="text" name="Name" placeholder="Your name" class="w-full rounded-xl border border-white/15 bg-zinc-950 px-4 py-3 text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus-blue" />
+              </label>
+              <label class="block">
+                <span class="mb-2 block text-sm text-zinc-300">Email address</span>
+                <input type="email" name="Email" required placeholder="you@example.com" class="w-full rounded-xl border border-white/15 bg-zinc-950 px-4 py-3 text-zinc-100 placeholder:text-zinc-500" />
+              </label>
+              <input type="hidden" name="Created" value="x-sheetmonkey-current-date-time" />
+              <input type="submit" value="Sign Up" class="w-full rounded-xl px-5 py-3 font-semibold cursor-pointer btn-submit" />
+            </form>
+            <p id="message" class="mt-4 text-sm text-blue-muted"></p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="border-t border-white/10">
+      <div class="max-w-6xl mx-auto px-6 py-8 text-sm text-zinc-400">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div>
+            <div class="font-semibold text-zinc-100">Kiroku</div>
+            <p class="mt-2">Simple, maintainable systems designed for performance, reliability, and long-term clarity.</p>
+          </div>
+
+          <div>
+            <div class="font-semibold text-zinc-100">Navigation</div>
+            <ul class="mt-2 space-y-2">
+              <li><a href="index.html" class="hover:text-white">Home</a></li>
+              <li><a href="about.html" class="hover:text-white">About</a></li>
+              <li><a href="index.html#contact" class="hover:text-white">Contact</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="font-semibold text-zinc-100">Contact</div>
+            <p class="mt-2">Use the existing contact method already on the site (do not invent new systems).</p>
+          </div>
+        </div>
+
+        <div class="mt-6 text-zinc-500">© 2024-2026 Kiroku v1.0.6. Built for calm, reliable digital systems.</div>
+      </div>
+    </footer>
+
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const interestButton = document.getElementById('interest');
+        const form = document.getElementById('myForm');
+        const message = document.getElementById('message');
+
+        if (interestButton && form) {
+          interestButton.addEventListener('click', () => {
+            interestButton.style.display = 'none';
+            form.style.display = 'block';
+          });
+
+          form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const data = new FormData(e.target);
+
+            fetch('https://api.sheetmonkey.io/form/bPBaxsjTc3jzMkn8euuerZ', {
+              method: 'POST',
+              body: data
+            })
+              .then((response) => {
+                if (response.ok) {
+                  if (message) message.textContent = 'Thank you for signing up — I will be in touch.';
+                  form.style.display = 'none';
+                } else {
+                  if (message) message.textContent = 'Sorry, something went wrong. Please try again.';
+                }
+              })
+              .catch(() => {
+                if (message) message.textContent = 'Sorry, something went wrong. Please try again.';
+              });
+          });
+        }
+      });
+    </script>
+  </div>
+</body>
+</html>
