@@ -86,6 +86,24 @@
     a.btn-outline { text-decoration: none; }
     input[type="submit"].btn-submit { font-weight: 600; }
     .focus-blue:focus { outline: none; box-shadow: 0 0 0 4px rgba(61,169,252,0.12); border-color: var(--brand-blue); }
+
+    /* Neon interactive accent for navigation and primary CTAs */
+    .neon-interactive {
+      border: 1px solid transparent;
+      box-sizing: border-box;
+      transition: border-color 200ms ease, box-shadow 200ms ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .neon-interactive:hover,
+    .neon-interactive:focus-visible {
+      border-color: #3da9fc;
+      box-shadow:
+        0 12px 30px rgba(61,169,252,0.10),
+        0 4px 12px rgba(37,99,235,0.06),
+        inset 0 0 8px rgba(125,211,252,0.03);
+      outline: none;
+    }
   </style>
 </head>
 <body class="bg-zinc-950 text-zinc-100 antialiased">
@@ -100,11 +118,11 @@
           </span>
         </a>
         <nav class="hidden md:flex items-center gap-6 text-sm text-zinc-300">
-          <a href="#services" class="hover:text-white">Services</a>
-          <a href="#approach" class="hover:text-white">Approach</a>
-          <a href="about.html" class="hover:text-white">About</a>
-          <a href="#work" class="hover:text-white">Work</a>
-          <a href="#contact" class="hover:text-white">Contact</a>
+          <a href="#services" class="hover:text-white neon-interactive">Services</a>
+          <a href="#approach" class="hover:text-white neon-interactive">Approach</a>
+          <a href="about.html" class="hover:text-white neon-interactive">About</a>
+          <a href="#work" class="hover:text-white neon-interactive">Work</a>
+          <a href="#contact" class="hover:text-white neon-interactive">Contact</a>
         </nav>
       </div>
     </header>
@@ -308,7 +326,7 @@
 
           <div class="rounded-3xl border border-white/10 bg-white/5 p-7">
             <p class="text-sm text-zinc-400">Simple contact form</p>
-            <button id="interest" class="mt-5 inline-flex w-full items-center justify-center rounded-xl px-5 py-3 font-semibold btn-outline">Register interest</button>
+            <button id="interest" class="mt-5 inline-flex w-full items-center justify-center rounded-xl px-5 py-3 font-semibold btn-outline neon-interactive">Register interest</button>
             <form id="myForm" action="https://api.sheetmonkey.io/form/bPBaxsjTc3jzMkn8euuerZ" method="post" class="mt-5 space-y-4" style="display: none;">
               <label class="block">
                 <span class="mb-2 block text-sm text-zinc-300">Your name</span>
@@ -319,7 +337,7 @@
                 <input type="email" name="Email" required placeholder="you@example.com" class="w-full rounded-xl border border-white/15 bg-zinc-950 px-4 py-3 text-zinc-100 placeholder:text-zinc-5[...]" />
               </label>
               <input type="hidden" name="Created" value="x-sheetmonkey-current-date-time" />
-              <input type="submit" value="Sign Up" class="w-full rounded-xl px-5 py-3 font-semibold cursor-pointer btn-submit" />
+              <input type="submit" value="Sign Up" class="w-full rounded-xl px-5 py-3 font-semibold cursor-pointer btn-submit neon-interactive" />
             </form>
             <p id="message" class="mt-4 text-sm text-blue-muted"></p>
           </div>
@@ -338,9 +356,9 @@
           <div>
             <div class="font-semibold text-zinc-100">Navigation</div>
             <ul class="mt-2 space-y-2">
-              <li><a href="index.html" class="hover:text-white">Home</a></li>
-              <li><a href="about.html" class="hover:text-white">About</a></li>
-              <li><a href="#contact" class="hover:text-white">Contact</a></li>
+                  <li><a href="index.html" class="hover:text-white neon-interactive">Home</a></li>
+                  <li><a href="about.html" class="hover:text-white neon-interactive">About</a></li>
+                  <li><a href="#contact" class="hover:text-white neon-interactive">Contact</a></li>
             </ul>
           </div>
 
