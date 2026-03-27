@@ -60,13 +60,14 @@
     /* LED edge variables (kept local to the page to avoid cascades) */
     :root { --led-thickness: 2px; --led-opacity: 0.12; --led-hover-opacity: 0.18; --led-speed: 3.2s; --led-colors: #3da9fc 0%, #7dd3fc 40%, #2563eb 80%, #3b2efc 100%; }
 
-    .neon-interactive::before { content: ''; position: absolute; left: 8%; right: 8%; bottom: -1px; height: var(--led-thickness); border-radius: 4px; background: linear-gradient(90deg, var(--led-colors)); background-size: 300% 100%; opacity: var(--led-opacity); pointer-events: none; transform: translateZ(0); transition: opacity 220ms cubic-bezier(0.22,1,0.36,1); }
-    .neon-interactive:hover::before, .neon-interactive:focus-visible::before { opacity: var(--led-hover-opacity); animation: led-move var(--led-speed) linear infinite; }
+    .neon-interactive::before { content: ''; position: absolute; left: 8%; right: 8%; bottom: -1px; height: var(--led-thickness); border-radius: 4px; background: linear-gradient(90deg, var(--led-colors)); background-size: 300% 100%; opacity: var(--led-opacity); pointer-events: none; transform: translateZ(0); transition: opacity 220ms cubic-bezier(0.22,1,0.36,1); animation: led-move var(--led-speed) linear infinite; animation-play-state: paused; }
+    .neon-interactive:hover::before, .neon-interactive:focus-visible::before { opacity: var(--led-hover-opacity); animation-play-state: running; }
 
     @keyframes led-move { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
 
     /* Consistent radius for interactive elements */
     header a, header button, footer a, footer button, .btn-outline, .btn-submit { border-radius: 0.75rem; }
+    header a.neon-interactive, footer a.neon-interactive { padding: 0.3rem 0.55rem; }
 
     /* Panel interaction (same system as index) */
     .border.rounded-2xl, .border.rounded-3xl {

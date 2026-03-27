@@ -149,17 +149,24 @@
       pointer-events: none;
       transform: translateZ(0);
       transition: opacity 220ms var(--interaction-ease);
+      animation: led-move var(--led-speed) linear infinite;
+      animation-play-state: paused;
     }
 
     .neon-interactive:hover::before,
     .neon-interactive:focus-visible::before {
       opacity: var(--led-hover-opacity);
-      animation: led-move var(--led-speed) linear infinite;
+      animation-play-state: running;
     }
 
     /* Ensure all interactive anchors/buttons in nav/footer and primary CTAs share the same radius */
     header a, header button, footer a, footer button, .btn-outline, .btn-submit {
       border-radius: var(--radius-lg);
+    }
+
+    /* Nav/footer link padding — keep glow border from overlapping text */
+    header a.neon-interactive, footer a.neon-interactive {
+      padding: 0.3rem 0.55rem;
     }
 
     /* Panel interaction: subtle lift, border brighten, soft glow, slight brighten, and blueprint trace */
@@ -229,6 +236,8 @@
       border-radius: 2px;
       transition: opacity 260ms var(--interaction-ease);
       transform: translateZ(0);
+      animation: led-move var(--led-speed) linear infinite;
+      animation-play-state: paused;
     }
 
     :is(div,section,article).border.rounded-2xl:hover::before,
@@ -236,7 +245,7 @@
     :is(div,section,article).border.rounded-2xl:focus-visible::before,
     :is(div,section,article).border.rounded-3xl:focus-visible::before {
       opacity: 0.12;
-      animation: led-move var(--led-speed) linear infinite;
+      animation-play-state: running;
     }
 
     /* Keyframes: smooth linear LED movement (background-position) */
