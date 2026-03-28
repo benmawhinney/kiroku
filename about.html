@@ -98,6 +98,19 @@
     :root { --led-thickness: 3px; --led-speed: 3.2s; --led-colors: #3da9fc 0%, #7dd3fc 40%, #2563eb 80%, #3b2efc 100%; }
     @keyframes led-move { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
 
+    /* Panel perimeter LED (mirrors index.html system) */
+    @property --panel-led-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+    @keyframes panel-led-spin { to { --panel-led-angle: 360deg; } }
+    .border.rounded-2xl::before, .border.rounded-3xl::before {
+      content: ''; position: absolute; inset: -1px; border-radius: calc(0.75rem + 1px); padding: 1.5px;
+      background: conic-gradient(from var(--panel-led-angle), #7dd3fc 0deg, #3da9fc 8deg, #2563eb 18deg, #1a2c5e 38deg, #2563eb 72deg, #7dd3fc 87deg, #3da9fc 90deg, #2563eb 100deg, #1a2c5e 118deg, #2563eb 162deg, #7dd3fc 177deg, #3da9fc 180deg, #2563eb 190deg, #1a2c5e 208deg, #2563eb 252deg, #7dd3fc 267deg, #3da9fc 270deg, #2563eb 280deg, #1a2c5e 298deg, #2563eb 348deg, #7dd3fc 360deg);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: destination-out;
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask-composite: exclude;
+      pointer-events: none; opacity: 0.22; transition: opacity 200ms cubic-bezier(0.22,1,0.36,1); animation: panel-led-spin 5s linear infinite;
+    }
+    .border.rounded-2xl:hover::before, .border.rounded-3xl:hover::before, .border.rounded-2xl:focus-visible::before, .border.rounded-3xl:focus-visible::before { opacity: 0.58; }
+    @media (prefers-reduced-motion: reduce) { .border.rounded-2xl::before, .border.rounded-3xl::before { animation: none; } }
+
     /* Panel interaction (same system as index) */
     .border.rounded-2xl, .border.rounded-3xl {
       position: relative; transition: transform 200ms cubic-bezier(0.22,1,0.36,1), box-shadow 200ms cubic-bezier(0.22,1,0.36,1), border-color 200ms cubic-bezier(0.22,1,0.36,1), filter 200ms cubic-bezier(0.22,1,0.36,1);

@@ -259,34 +259,93 @@
       opacity: 0.14;
     }
 
-    /* Panel LED chase: subtle top edge bar that animates on hover/focus */
+    /* ---- PANEL PERIMETER LED ----------------------------------------
+       Technique: conic-gradient fills ::before; mask reveals only the
+       padding ring (border region). @property animates the start angle
+       so the 4 bright nodes appear to travel clockwise around the frame.
+       ----------------------------------------------------------------- */
+
+    /* Register animatable angle property (supported: Chrome 85+, Safari 16.4+, FF 128+) */
+    @property --panel-led-angle {
+      syntax: '<angle>';
+      inherits: false;
+      initial-value: 0deg;
+    }
+
     :is(div,section,article).border.rounded-2xl::before,
     :is(div,section,article).border.rounded-3xl::before {
       content: '';
       position: absolute;
-      left: 0.8rem; right: 0.8rem; top: -1px;
-      height: var(--led-thickness);
-      background: linear-gradient(90deg, var(--led-colors));
-      background-size: 350% 100%;
-      opacity: 0;
+      inset: -1px;                              /* sit just outside the panel border */
+      border-radius: calc(var(--radius-lg) + 1px); /* compensate for inset */
+      padding: 1.5px;                           /* defines the LED border thickness */
+
+      /* 4 bright nodes at 0°/90°/180°/270° with fading trail between */
+      background: conic-gradient(
+        from var(--panel-led-angle),
+        /* ─ Node 1 ─ */  #7dd3fc   0deg,
+                          #3da9fc   8deg,
+                          #2563eb  18deg,
+                          #1a2c5e  38deg,
+                          #2563eb  72deg,
+        /* ─ Node 2 ─ */  #7dd3fc  87deg,
+                          #3da9fc  90deg,
+                          #2563eb 100deg,
+                          #1a2c5e 118deg,
+                          #2563eb 162deg,
+        /* ─ Node 3 ─ */  #7dd3fc 177deg,
+                          #3da9fc 180deg,
+                          #2563eb 190deg,
+                          #1a2c5e 208deg,
+                          #2563eb 252deg,
+        /* ─ Node 4 ─ */  #7dd3fc 267deg,
+                          #3da9fc 270deg,
+                          #2563eb 280deg,
+                          #1a2c5e 298deg,
+                          #2563eb 348deg,
+        /* ─ loop ─  */   #7dd3fc 360deg
+      );
+
+      /* Mask: clip to the padding ring only — hides the panel fill, shows only the border */
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+
       pointer-events: none;
-      border-radius: 2px;
-      transition: opacity 260ms var(--interaction-ease);
-      transform: translateZ(0);
+      opacity: 0.22;
+      transition: opacity var(--interaction-dur) var(--interaction-ease);
+      animation: panel-led-spin 5s linear infinite;
     }
 
     :is(div,section,article).border.rounded-2xl:hover::before,
     :is(div,section,article).border.rounded-3xl:hover::before,
     :is(div,section,article).border.rounded-2xl:focus-visible::before,
     :is(div,section,article).border.rounded-3xl:focus-visible::before {
-      opacity: 0.35;
-      animation: led-move var(--led-speed) linear infinite;
+      opacity: 0.58;
     }
 
-    /* Keyframes: smooth linear LED movement (background-position) */
+    /* Keyframes: rotate the conic-gradient angle (GPU — no layout/paint) */
+    @keyframes panel-led-spin {
+      to { --panel-led-angle: 360deg; }
+    }
+
+    /* Keyframe: LED movement for nav link underline bars */
     @keyframes led-move {
       from { background-position: 0% 50%; }
-      to { background-position: 100% 50%; }
+      to   { background-position: 100% 50%; }
+    }
+
+    /* Accessibility: disable animation for users who prefer reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      :is(div,section,article).border.rounded-2xl::before,
+      :is(div,section,article).border.rounded-3xl::before {
+        animation: none;
+      }
     }
   </style>
 </head>
