@@ -62,17 +62,19 @@
       --led-thickness: 2px;
       --led-speed: 3.0s; /* tuned for perceived parity with 5.5s panel ring — linear traversal reads slower than circular */
 
-      /* Nav spotlight node — derived from shared palette */
+      /* Nav spotlight node — tight 12% node so the scan reads as a travelling point,
+         not a broad shimmer. Long transparent tails give clear positional contrast. */
       --led-colors:
         transparent           0%,
-        var(--led-deep)      18%,
-        var(--led-blue)      30%,
-        var(--led-hot)       47%,
+        transparent          44%,
+        var(--led-deep)      46%,
+        var(--led-blue)      48%,
+        var(--led-hot)       49%,
         var(--led-core)      50%,
-        var(--led-hot)       53%,
-        var(--led-mid)       63%,
-        var(--led-blue)      70%,
-        var(--led-deep)      82%,
+        var(--led-hot)       51%,
+        var(--led-blue)      52%,
+        var(--led-deep)      54%,
+        transparent          56%,
         transparent         100%;
     }
 
@@ -183,7 +185,7 @@
       height: var(--led-thickness);
       border-radius: calc(var(--radius-lg) / 2);
       background: linear-gradient(90deg, var(--led-colors));
-      background-size: 200% 100%;
+      background-size: 250% 100%;
       background-position: 100% 50%;
       opacity: 0;
       pointer-events: none;
@@ -639,7 +641,7 @@
           
         </div>
 
-        <div class="mt-6 text-zinc-500">© 2024-2026 Kiroku v1.1.3. Built for calm, reliable digital systems.</div>
+        <div class="mt-6 text-zinc-500">© 2024-2026 Kiroku v1.1.4. Built for calm, reliable digital systems.</div>
       </div>
     </footer>
   </div>
