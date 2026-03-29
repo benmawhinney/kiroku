@@ -51,9 +51,9 @@
       --brand-blue-3: #2563eb;
       /* LED edge variables */
       --led-thickness: 3px; /* visual thickness of the moving edge */
-      --led-speed: 5.5s; /* aligned with panel-led-spin duration */
-      /* Spotlight node: transparent → blue → bright centre → blue → transparent */
-      --led-colors: transparent 0%, #2563eb 20%, #7dd3fc 45%, #a5d8ff 50%, #7dd3fc 55%, #2563eb 80%, transparent 100%;
+      --led-speed: 6s; /* slightly slower than panel (5.5s) — counteracts linear-feels-faster illusion */
+      /* Spotlight node: tighter peak for a defined energy point, not a soft glow */
+      --led-colors: transparent 0%, #1a3a6e 15%, #2563eb 25%, #7dd3fc 47%, #b8e4ff 50%, #7dd3fc 53%, #2563eb 75%, #1a3a6e 85%, transparent 100%;
     }
 
     /* Local @font-face rules (fallback to Google Fonts if assets missing) */
@@ -159,7 +159,7 @@
     footer a.neon-interactive::before {
       content: '';
       position: absolute;
-      left: 8%; right: 8%; bottom: -1px;
+      left: 6%; right: 6%; bottom: -1px;
       height: var(--led-thickness);
       border-radius: calc(var(--radius-lg) / 2);
       background: linear-gradient(90deg, var(--led-colors));
@@ -168,7 +168,7 @@
       opacity: 0;
       pointer-events: none;
       transform: translateZ(0);
-      transition: opacity 400ms var(--interaction-ease);
+      transition: opacity 300ms var(--interaction-ease);
     }
 
     header a.neon-interactive:hover::before,
