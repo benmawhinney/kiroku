@@ -317,16 +317,16 @@
       mask-composite: exclude;
 
       pointer-events: none;
-      opacity: 0.22;
-      transition: opacity var(--interaction-dur) var(--interaction-ease);
-      animation: panel-led-spin 5s linear infinite;
+      opacity: 0;
+      transition: opacity 400ms var(--interaction-ease);
+      animation: panel-led-spin 5.5s linear infinite;
     }
 
     :is(div,section,article).border.rounded-2xl:hover::before,
     :is(div,section,article).border.rounded-3xl:hover::before,
     :is(div,section,article).border.rounded-2xl:focus-visible::before,
     :is(div,section,article).border.rounded-3xl:focus-visible::before {
-      opacity: 0.58;
+      opacity: 0.60;
     }
 
     /* Keyframes: rotate the conic-gradient angle (GPU — no layout/paint) */
