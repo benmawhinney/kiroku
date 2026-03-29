@@ -49,11 +49,31 @@
       --interaction-dur: 200ms;
       --brand-blue-2: #7dd3fc;
       --brand-blue-3: #2563eb;
-      /* LED edge variables */
-      --led-thickness: 3px; /* visual thickness of the moving edge */
-      --led-speed: 6s; /* slightly slower than panel (5.5s) — counteracts linear-feels-faster illusion */
-      /* Spotlight node: tighter peak for a defined energy point, not a soft glow */
-      --led-colors: transparent 0%, #1a3a6e 15%, #2563eb 25%, #7dd3fc 47%, #b8e4ff 50%, #7dd3fc 53%, #2563eb 75%, #1a3a6e 85%, transparent 100%;
+      /* ── Shared LED light engine ─────────────────────────────────────
+         One palette, two geometries (nav line / panel perimeter).
+         Adjust these tokens to recalibrate both systems simultaneously. */
+      --led-core:  #cce8ff;  /* near-white ice blue  — hottest point       */
+      --led-hot:   #7dd3fc;  /* sky blue             — primary luminance   */
+      --led-mid:   #3da9fc;  /* electric blue        — mid transition      */
+      --led-blue:  #2563eb;  /* deep electric blue   — shoulder            */
+      --led-deep:  #1a3264;  /* dark navy            — trail fade          */
+      --led-active-opacity: 0.60;
+
+      --led-thickness: 3px;
+      --led-speed: 6s; /* slightly slower than panel — offsets linear-feels-faster perception */
+
+      /* Nav spotlight node — derived from shared palette */
+      --led-colors:
+        transparent           0%,
+        var(--led-deep)      15%,
+        var(--led-blue)      25%,
+        var(--led-hot)       47%,
+        var(--led-core)      50%,
+        var(--led-hot)       53%,
+        var(--led-mid)       62%,
+        var(--led-blue)      75%,
+        var(--led-deep)      85%,
+        transparent         100%;
     }
 
     /* Local @font-face rules (fallback to Google Fonts if assets missing) */
@@ -175,7 +195,7 @@
     header a.neon-interactive:focus-visible::before,
     footer a.neon-interactive:hover::before,
     footer a.neon-interactive:focus-visible::before {
-      opacity: 0.60;
+      opacity: var(--led-active-opacity);
       animation: led-move var(--led-speed) linear infinite alternate;
     }
 
@@ -280,30 +300,42 @@
       border-radius: calc(var(--radius-lg) + 1px); /* compensate for inset */
       padding: 1.5px;                           /* defines the LED border thickness */
 
-      /* 4 bright nodes at 0°/90°/180°/270° with fading trail between */
+      /* 4 nodes at 0°/90°/180°/270° — same palette as nav spotlight node */
       background: conic-gradient(
         from var(--panel-led-angle),
-        /* ─ Node 1 ─ */  #7dd3fc   0deg,
-                          #3da9fc   8deg,
-                          #2563eb  18deg,
-                          #1a2c5e  38deg,
-                          #2563eb  72deg,
-        /* ─ Node 2 ─ */  #7dd3fc  87deg,
-                          #3da9fc  90deg,
-                          #2563eb 100deg,
-                          #1a2c5e 118deg,
-                          #2563eb 162deg,
-        /* ─ Node 3 ─ */  #7dd3fc 177deg,
-                          #3da9fc 180deg,
-                          #2563eb 190deg,
-                          #1a2c5e 208deg,
-                          #2563eb 252deg,
-        /* ─ Node 4 ─ */  #7dd3fc 267deg,
-                          #3da9fc 270deg,
-                          #2563eb 280deg,
-                          #1a2c5e 298deg,
-                          #2563eb 348deg,
-        /* ─ loop ─  */   #7dd3fc 360deg
+        /* ─ Node 1 @ 0° ─ */   var(--led-core)   0deg,  /* ice-white peak     */
+                                var(--led-hot)    2deg,  /* hot ring           */
+                                var(--led-mid)   10deg,  /* mid transition     */
+                                var(--led-blue)  20deg,  /* blue shoulder      */
+                                var(--led-deep)  40deg,  /* deep trail         */
+                                var(--led-blue)  70deg,  /* rise begins        */
+                                var(--led-mid)   82deg,  /* hot approach       */
+                                var(--led-hot)   88deg,  /* near peak          */
+        /* ─ Node 2 @ 90° ─ */  var(--led-core)  90deg,
+                                var(--led-hot)   92deg,
+                                var(--led-mid)  100deg,
+                                var(--led-blue) 110deg,
+                                var(--led-deep) 130deg,
+                                var(--led-blue) 160deg,
+                                var(--led-mid)  172deg,
+                                var(--led-hot)  178deg,
+        /* ─ Node 3 @ 180° ─ */ var(--led-core) 180deg,
+                                var(--led-hot)  182deg,
+                                var(--led-mid)  190deg,
+                                var(--led-blue) 200deg,
+                                var(--led-deep) 220deg,
+                                var(--led-blue) 250deg,
+                                var(--led-mid)  262deg,
+                                var(--led-hot)  268deg,
+        /* ─ Node 4 @ 270° ─ */ var(--led-core) 270deg,
+                                var(--led-hot)  272deg,
+                                var(--led-mid)  280deg,
+                                var(--led-blue) 290deg,
+                                var(--led-deep) 310deg,
+                                var(--led-blue) 340deg,
+                                var(--led-mid)  352deg,
+                                var(--led-hot)  358deg,
+        /* ─ loop ─ */           var(--led-core) 360deg
       );
 
       /* Mask: clip to the padding ring only — hides the panel fill, shows only the border */
@@ -326,7 +358,7 @@
     :is(div,section,article).border.rounded-3xl:hover::before,
     :is(div,section,article).border.rounded-2xl:focus-visible::before,
     :is(div,section,article).border.rounded-3xl:focus-visible::before {
-      opacity: 0.60;
+      opacity: var(--led-active-opacity);
     }
 
     /* Keyframes: rotate the conic-gradient angle (GPU — no layout/paint) */
