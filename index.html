@@ -51,10 +51,9 @@
       --brand-blue-3: #2563eb;
       /* LED edge variables */
       --led-thickness: 3px; /* visual thickness of the moving edge */
-      --led-opacity: 0.30; /* base opacity when idle */
-      --led-hover-opacity: 0.75; /* opacity on hover/focus */
-      --led-speed: 3.2s; /* LED chase duration (slow and smooth) */
-      --led-colors: #3da9fc 0%, #7dd3fc 40%, #2563eb 80%, #3b2efc 100%;
+      --led-speed: 5.5s; /* aligned with panel-led-spin duration */
+      /* Spotlight node: transparent → blue → bright centre → blue → transparent */
+      --led-colors: transparent 0%, #2563eb 20%, #7dd3fc 45%, #a5d8ff 50%, #7dd3fc 55%, #2563eb 80%, transparent 100%;
     }
 
     /* Local @font-face rules (fallback to Google Fonts if assets missing) */
@@ -155,28 +154,29 @@
       outline: none;
     }
 
-    /* Nav LED bar: bottom edge, short span, hidden at rest */
+    /* Nav LED bar: single spotlight node scanning left ⇄ right */
     header a.neon-interactive::before,
     footer a.neon-interactive::before {
       content: '';
       position: absolute;
-      left: 10%; right: 10%; bottom: -1px;
+      left: 8%; right: 8%; bottom: -1px;
       height: var(--led-thickness);
       border-radius: calc(var(--radius-lg) / 2);
       background: linear-gradient(90deg, var(--led-colors));
-      background-size: 300% 100%;
+      background-size: 200% 100%;
+      background-position: 100% 50%;
       opacity: 0;
       pointer-events: none;
       transform: translateZ(0);
-      transition: opacity 200ms var(--interaction-ease);
+      transition: opacity 400ms var(--interaction-ease);
     }
 
     header a.neon-interactive:hover::before,
     header a.neon-interactive:focus-visible::before,
     footer a.neon-interactive:hover::before,
     footer a.neon-interactive:focus-visible::before {
-      opacity: 0.70;
-      animation: led-move var(--led-speed) linear infinite;
+      opacity: 0.60;
+      animation: led-move var(--led-speed) linear infinite alternate;
     }
 
     /* ---- 2. CTAs: neon glow button; NO LED bar ---- */
@@ -334,10 +334,10 @@
       to { --panel-led-angle: 360deg; }
     }
 
-    /* Keyframe: LED movement for nav link underline bars */
+    /* Keyframe: nav LED node scans left → right, alternate reverses it (no reset) */
     @keyframes led-move {
-      from { background-position: 0% 50%; }
-      to   { background-position: 100% 50%; }
+      from { background-position: 100% 50%; }
+      to   { background-position:   0% 50%; }
     }
 
     /* Accessibility: disable animation for users who prefer reduced motion */
