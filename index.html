@@ -60,7 +60,7 @@
       --led-active-opacity: 0.60;
 
       --led-thickness: 2px;
-      --led-speed: 3.0s; /* tuned for perceived parity with 5.5s panel ring — linear traversal reads slower than circular */
+      --led-speed: 2.2s; /* tuned for perceived parity with 5.5s panel ring — linear traversal reads slower than circular */
 
       /* Nav spotlight node — 24% wide, core at 50%.
          With background-size:200%, core kisses each edge at the animation endpoints;
@@ -200,7 +200,7 @@
     footer a.neon-interactive:hover::before,
     footer a.neon-interactive:focus-visible::before {
       opacity: var(--led-active-opacity);
-      animation: led-move var(--led-speed) linear infinite alternate;
+      animation: led-move var(--led-speed) ease-in-out infinite alternate;
     }
 
     /* ---- 2. CTAs: neon glow button; NO LED bar ---- */
@@ -643,7 +643,7 @@
           
         </div>
 
-        <div class="mt-6 text-zinc-500">© 2024-2026 Kiroku v1.1.5. Built for calm, reliable digital systems.</div>
+        <div class="mt-6 text-zinc-500">© 2024-2026 Kiroku v1.1.6. Built for calm, reliable digital systems.</div>
       </div>
     </footer>
   </div>

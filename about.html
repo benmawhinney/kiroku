@@ -77,7 +77,7 @@
 
     header a.neon-interactive:hover::before, header a.neon-interactive:focus-visible::before,
     footer a.neon-interactive:hover::before, footer a.neon-interactive:focus-visible::before {
-      opacity: var(--led-active-opacity); animation: led-move var(--led-speed) linear infinite alternate;
+      opacity: var(--led-active-opacity); animation: led-move var(--led-speed) ease-in-out infinite alternate;
     }
 
     /* ---- 2. CTAs ---- */
@@ -95,7 +95,7 @@
     }
 
     /* LED variables and keyframes — shared light engine (mirrors index.html) */
-    :root { --led-core: #cce8ff; --led-hot: #7dd3fc; --led-mid: #3da9fc; --led-blue: #2563eb; --led-deep: #1a3264; --led-active-opacity: 0.60; --led-thickness: 2px; --led-speed: 3.0s; --led-colors: transparent 0%, transparent 38%, var(--led-deep) 41%, var(--led-blue) 45%, var(--led-hot) 48%, var(--led-core) 50%, var(--led-hot) 52%, var(--led-blue) 55%, var(--led-deep) 59%, transparent 62%, transparent 100%; }
+    :root { --led-core: #cce8ff; --led-hot: #7dd3fc; --led-mid: #3da9fc; --led-blue: #2563eb; --led-deep: #1a3264; --led-active-opacity: 0.60; --led-thickness: 2px; --led-speed: 2.2s; --led-colors: transparent 0%, transparent 38%, var(--led-deep) 41%, var(--led-blue) 45%, var(--led-hot) 48%, var(--led-core) 50%, var(--led-hot) 52%, var(--led-blue) 55%, var(--led-deep) 59%, transparent 62%, transparent 100%; }
     @keyframes led-move { from { background-position: 100% 50%; } to { background-position: 0% 50%; } }
 
     /* Panel perimeter LED (mirrors index.html system) */
@@ -239,7 +239,7 @@
           </div>
         </div>
 
-        <div class="mt-6 text-zinc-500">© 2024-2026 Kiroku v1.1.5. Built for calm, reliable digital systems.</div>
+        <div class="mt-6 text-zinc-500">© 2024-2026 Kiroku v1.1.6. Built for calm, reliable digital systems.</div>
       </div>
     </footer>
 
