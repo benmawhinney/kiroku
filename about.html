@@ -70,7 +70,7 @@
     header a.neon-interactive::before, footer a.neon-interactive::before {
       content: ''; position: absolute; left: 6%; right: 6%; bottom: -1px;
       height: var(--led-thickness); border-radius: 4px;
-      background: linear-gradient(90deg, var(--led-colors)); background-size: 250% 100%; background-position: 100% 50%;
+      background: linear-gradient(90deg, var(--led-colors)); background-size: 200% 100%; background-position: 100% 50%;
       opacity: 0; pointer-events: none; transform: translateZ(0);
       transition: opacity 300ms cubic-bezier(0.22,1,0.36,1);
     }
@@ -95,7 +95,7 @@
     }
 
     /* LED variables and keyframes — shared light engine (mirrors index.html) */
-    :root { --led-core: #cce8ff; --led-hot: #7dd3fc; --led-mid: #3da9fc; --led-blue: #2563eb; --led-deep: #1a3264; --led-active-opacity: 0.60; --led-thickness: 2px; --led-speed: 3.0s; --led-colors: transparent 0%, transparent 44%, var(--led-deep) 46%, var(--led-blue) 48%, var(--led-hot) 49%, var(--led-core) 50%, var(--led-hot) 51%, var(--led-blue) 52%, var(--led-deep) 54%, transparent 56%, transparent 100%; }
+    :root { --led-core: #cce8ff; --led-hot: #7dd3fc; --led-mid: #3da9fc; --led-blue: #2563eb; --led-deep: #1a3264; --led-active-opacity: 0.60; --led-thickness: 2px; --led-speed: 3.0s; --led-colors: transparent 0%, transparent 38%, var(--led-deep) 41%, var(--led-blue) 45%, var(--led-hot) 48%, var(--led-core) 50%, var(--led-hot) 52%, var(--led-blue) 55%, var(--led-deep) 59%, transparent 62%, transparent 100%; }
     @keyframes led-move { from { background-position: 100% 50%; } to { background-position: 0% 50%; } }
 
     /* Panel perimeter LED (mirrors index.html system) */
@@ -239,7 +239,7 @@
           </div>
         </div>
 
-        <div class="mt-6 text-zinc-500">© 2024-2026 Kiroku v1.1.4. Built for calm, reliable digital systems.</div>
+        <div class="mt-6 text-zinc-500">© 2024-2026 Kiroku v1.1.5. Built for calm, reliable digital systems.</div>
       </div>
     </footer>
 

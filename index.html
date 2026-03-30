@@ -62,19 +62,21 @@
       --led-thickness: 2px;
       --led-speed: 3.0s; /* tuned for perceived parity with 5.5s panel ring — linear traversal reads slower than circular */
 
-      /* Nav spotlight node — tight 12% node so the scan reads as a travelling point,
-         not a broad shimmer. Long transparent tails give clear positional contrast. */
+      /* Nav spotlight node — 24% wide, core at 50%.
+         With background-size:200%, core kisses each edge at the animation endpoints;
+         the 12%-gradient shoulder (= 24% of element width) stays visible during
+         turnaround so the light never fully exits the strip. */
       --led-colors:
         transparent           0%,
-        transparent          44%,
-        var(--led-deep)      46%,
-        var(--led-blue)      48%,
-        var(--led-hot)       49%,
+        transparent          38%,
+        var(--led-deep)      41%,
+        var(--led-blue)      45%,
+        var(--led-hot)       48%,
         var(--led-core)      50%,
-        var(--led-hot)       51%,
-        var(--led-blue)      52%,
-        var(--led-deep)      54%,
-        transparent          56%,
+        var(--led-hot)       52%,
+        var(--led-blue)      55%,
+        var(--led-deep)      59%,
+        transparent          62%,
         transparent         100%;
     }
 
@@ -185,7 +187,7 @@
       height: var(--led-thickness);
       border-radius: calc(var(--radius-lg) / 2);
       background: linear-gradient(90deg, var(--led-colors));
-      background-size: 250% 100%;
+      background-size: 200% 100%;
       background-position: 100% 50%;
       opacity: 0;
       pointer-events: none;
@@ -641,7 +643,7 @@
           
         </div>
 
-        <div class="mt-6 text-zinc-500">© 2024-2026 Kiroku v1.1.4. Built for calm, reliable digital systems.</div>
+        <div class="mt-6 text-zinc-500">© 2024-2026 Kiroku v1.1.5. Built for calm, reliable digital systems.</div>
       </div>
     </footer>
   </div>
