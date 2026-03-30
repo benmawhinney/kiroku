@@ -139,6 +139,23 @@
           <a href="about.html" class="hover:text-white neon-interactive">About</a>
           <a href="index.html#contact" class="hover:text-white neon-interactive">Contact</a>
         </nav>
+        <button id="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation menu"
+          class="md:hidden p-2 text-zinc-300 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-400 rounded transition-colors">
+          <svg id="icon-menu" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+            <line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/>
+          </svg>
+          <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true" class="hidden">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div id="mobile-nav" class="hidden md:hidden border-t border-white/10 bg-zinc-950/95" aria-hidden="true">
+        <nav class="max-w-6xl mx-auto px-6 py-2 flex flex-col text-sm text-zinc-300">
+          <a href="index.html" class="block py-3 hover:text-white transition-colors border-b border-white/5">Home</a>
+          <a href="index.html#services" class="block py-3 hover:text-white transition-colors border-b border-white/5">Services</a>
+          <a href="about.html" class="block py-3 hover:text-white transition-colors border-b border-white/5">About</a>
+          <a href="index.html#contact" class="block py-3 hover:text-white transition-colors">Contact</a>
+        </nav>
       </div>
     </header>
 
@@ -248,6 +265,33 @@
         const interestButton = document.getElementById('interest');
         const form = document.getElementById('myForm');
         const message = document.getElementById('message');
+
+        // Mobile navigation toggle
+        const navToggle = document.getElementById('nav-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        const iconMenu = document.getElementById('icon-menu');
+        const iconClose = document.getElementById('icon-close');
+        function openMobileNav() {
+          mobileNav.classList.remove('hidden');
+          mobileNav.setAttribute('aria-hidden', 'false');
+          navToggle.setAttribute('aria-expanded', 'true');
+          iconMenu.classList.add('hidden');
+          iconClose.classList.remove('hidden');
+        }
+        function closeMobileNav() {
+          mobileNav.classList.add('hidden');
+          mobileNav.setAttribute('aria-hidden', 'true');
+          navToggle.setAttribute('aria-expanded', 'false');
+          iconMenu.classList.remove('hidden');
+          iconClose.classList.add('hidden');
+        }
+        if (navToggle && mobileNav) {
+          navToggle.addEventListener('click', () => {
+            mobileNav.classList.contains('hidden') ? openMobileNav() : closeMobileNav();
+          });
+          mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileNav));
+          window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMobileNav(); }, { passive: true });
+        }
 
         if (interestButton && form) {
           interestButton.addEventListener('click', () => {
