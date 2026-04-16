@@ -127,6 +127,658 @@
       background-color: var(--bg-navy);
     }
 
+    .footer-bloom {
+      --threshold-active: 0;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .footer-bloom::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -1px;
+      height: 1px;
+      pointer-events: none;
+      background: linear-gradient(90deg, rgba(124, 191, 255, 0), rgba(252, 158, 221, 0.8), rgba(124, 191, 255, 0));
+      opacity: calc(0.12 + var(--threshold-active) * 0.45);
+      box-shadow:
+        0 0 10px rgba(255, 118, 204, calc(0.15 + var(--threshold-active) * 0.3)),
+        0 0 22px rgba(98, 180, 255, calc(0.1 + var(--threshold-active) * 0.2));
+      z-index: 2;
+    }
+
+    .footer-bloom::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(120% 90% at 50% 110%, rgba(255, 112, 184, 0.1), rgba(255, 112, 184, 0) 60%),
+        linear-gradient(to top, rgba(6, 8, 20, 0.55), rgba(6, 8, 20, 0));
+      z-index: 1;
+    }
+
+    .footer-bloom__fx {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 3;
+      overflow: hidden;
+    }
+
+    .footer-bloom__canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      opacity: 0.9;
+      filter: saturate(1.2);
+      transition: opacity 500ms ease;
+    }
+
+    .footer-bloom__static-petal {
+      --x: 50%;
+      --y: 92%;
+      --s: 1;
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+      width: calc(11px * var(--s));
+      height: calc(7px * var(--s));
+      transform: translate(-50%, -50%) rotate(-12deg);
+      border-radius: 70% 52% 62% 44%;
+      background: radial-gradient(circle at 30% 35%, rgba(255, 220, 244, 0.88), rgba(255, 154, 216, 0.5) 45%, rgba(255, 108, 188, 0.16) 100%);
+      box-shadow:
+        0 0 10px rgba(255, 126, 198, 0.28),
+        0 0 24px rgba(248, 84, 172, 0.14);
+      opacity: 0.34;
+    }
+
+    .footer-bloom__content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-deck {
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 0.95rem;
+      padding: 0.72rem 0.76rem 0.7rem;
+      background:
+        linear-gradient(180deg, rgba(27, 31, 39, 0.98), rgba(14, 18, 24, 0.99) 52%, rgba(9, 12, 17, 0.99) 100%),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.018) 0 1px, rgba(0, 0, 0, 0) 1px 6px);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.7),
+        0 12px 28px rgba(0, 0, 0, 0.34);
+      overflow: hidden;
+      color: #eff4fb;
+    }
+
+    .footer-deck::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0) 24%),
+        linear-gradient(110deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0) 36%),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.017) 0 1px, rgba(0, 0, 0, 0) 1px 5px);
+      opacity: 0.28;
+      pointer-events: none;
+    }
+
+    .footer-deck__screw {
+      position: absolute;
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 999px;
+      background: radial-gradient(circle at 34% 34%, rgba(90, 97, 108, 0.95), rgba(24, 27, 35, 0.98) 60%);
+      border: 1px solid rgba(5, 6, 9, 0.8);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 -1px 2px rgba(0, 0, 0, 0.7);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .footer-deck__screw::before,
+    .footer-deck__screw::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      background: rgba(9, 11, 16, 0.9);
+      transform: translate(-50%, -50%);
+    }
+
+    .footer-deck__screw::before {
+      width: 0.38rem;
+      height: 1px;
+    }
+
+    .footer-deck__screw::after {
+      width: 1px;
+      height: 0.38rem;
+    }
+
+    .footer-deck__screw--tl { left: 0.34rem; top: 0.34rem; }
+    .footer-deck__screw--tr { right: 0.34rem; top: 0.34rem; }
+    .footer-deck__screw--bl { left: 0.34rem; bottom: 0.34rem; }
+    .footer-deck__screw--br { right: 0.34rem; bottom: 0.34rem; }
+
+    .footer-deck > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-deck__header {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.8rem;
+      margin-bottom: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .footer-deck__header-right {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .footer-deck__mode {
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 0.4rem;
+      width: 1.62rem;
+      height: 1.1rem;
+      padding: 0;
+      background: linear-gradient(180deg, rgba(54, 60, 70, 0.48), rgba(16, 20, 27, 0.9));
+      color: rgba(229, 238, 249, 0.9);
+      display: inline-grid;
+      place-items: center;
+      transition: border-color 140ms ease, background-color 140ms ease;
+    }
+
+    .footer-deck__mode-icon {
+      width: 0.7rem;
+      height: 0.7rem;
+      stroke: rgba(194, 208, 225, 0.82);
+      fill: none;
+      stroke-width: 1.45;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.92;
+      filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.6));
+    }
+
+    .footer-deck__mode[aria-pressed='true'] {
+      border-color: rgba(145, 169, 196, 0.4);
+      background: linear-gradient(180deg, rgba(67, 78, 92, 0.62), rgba(22, 29, 38, 0.92));
+    }
+
+    .footer-deck__mode:hover,
+    .footer-deck__mode:focus-visible {
+      border-color: rgba(173, 194, 218, 0.46);
+      outline: none;
+    }
+
+    .footer-deck__display {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0.58rem;
+      margin-bottom: 0.62rem;
+      align-items: stretch;
+    }
+
+    .deck-counter {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.4rem;
+      padding: 0.55rem;
+      border-radius: 0.85rem;
+      border: 1px solid rgba(255, 179, 97, 0.22);
+      background: linear-gradient(180deg, rgba(33, 16, 8, 0.96), rgba(10, 8, 7, 0.98));
+      box-shadow:
+        inset 0 1px 0 rgba(255, 219, 178, 0.06),
+        inset 0 0 0 1px rgba(255, 127, 51, 0.06),
+        0 0 24px rgba(255, 132, 44, 0.08);
+    }
+
+    .deck-counter__cell {
+      min-width: 0;
+      padding: 0.38rem 0.42rem 0.3rem;
+      border-radius: 0.55rem;
+      background: linear-gradient(180deg, rgba(255, 188, 120, 0.05), rgba(20, 9, 5, 0.2));
+      border: 1px solid rgba(255, 164, 86, 0.14);
+      text-align: center;
+    }
+
+    .deck-counter__label {
+      display: block;
+      font-size: 0.5rem;
+      line-height: 1;
+      letter-spacing: 0.22em;
+      color: rgba(255, 203, 146, 0.58);
+      margin-bottom: 0.18rem;
+      text-transform: uppercase;
+    }
+
+    .deck-counter__value {
+      display: block;
+      font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+      font-size: 1.16rem;
+      line-height: 1;
+      color: #ffb36c;
+      text-shadow: 0 0 12px rgba(255, 128, 44, 0.34);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .deck-direction {
+      min-width: 6.25rem;
+      padding: 0.5rem 0.56rem;
+      border-radius: 0.8rem;
+      border: 1px solid rgba(147, 227, 177, 0.18);
+      background: linear-gradient(180deg, rgba(8, 16, 11, 0.92), rgba(7, 11, 9, 0.98));
+      display: grid;
+      align-content: center;
+      gap: 0.32rem;
+      box-shadow: inset 0 1px 0 rgba(182, 246, 204, 0.05);
+    }
+
+    .deck-direction__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.4rem;
+      font-size: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(171, 233, 193, 0.72);
+    }
+
+    .deck-direction__dial {
+      display: flex;
+      align-items: center;
+      gap: 0.44rem;
+    }
+
+    .deck-direction__compass {
+      width: 1.9rem;
+      height: 1.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(201, 230, 214, 0.18);
+      background: radial-gradient(circle at 50% 50%, rgba(140, 235, 174, 0.08), rgba(0, 0, 0, 0) 62%);
+      position: relative;
+      flex: 0 0 auto;
+    }
+
+    .deck-direction__compass::before,
+    .deck-direction__compass::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      background: rgba(218, 232, 223, 0.18);
+      transform: translate(-50%, -50%);
+    }
+
+    .deck-direction__compass::before {
+      width: 1px;
+      height: 1.25rem;
+    }
+
+    .deck-direction__compass::after {
+      width: 1.25rem;
+      height: 1px;
+    }
+
+    .deck-direction__needle {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 0.86rem;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255, 183, 104, 0), rgba(255, 183, 104, 0.92) 34%, rgba(255, 183, 104, 0.92));
+      transform-origin: 0 50%;
+      transform: rotate(var(--wind-angle, 0deg));
+      box-shadow: 0 0 9px rgba(255, 145, 66, 0.28);
+    }
+
+    .deck-direction__text {
+      display: grid;
+      gap: 0.08rem;
+    }
+
+    .deck-direction__value {
+      font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+      font-size: 0.86rem;
+      line-height: 1;
+      color: #e8f6ed;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .deck-direction__mode {
+      font-size: 0.52rem;
+      line-height: 1;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(168, 208, 184, 0.72);
+    }
+
+    .footer-deck__controls {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.56rem;
+      margin-bottom: 0.62rem;
+    }
+
+    .deck-knob {
+      position: relative;
+      display: grid;
+      justify-items: center;
+      gap: 0.3rem;
+      min-width: 0;
+    }
+
+    .deck-knob__well {
+      width: 3.95rem;
+      height: 3.95rem;
+      border-radius: 999px;
+      position: relative;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0) 46%),
+        linear-gradient(150deg, rgba(41, 46, 55, 0.92), rgba(13, 17, 23, 0.98));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.06),
+        inset 0 -3px 7px rgba(0, 0, 0, 0.56),
+        0 6px 14px rgba(0, 0, 0, 0.24);
+    }
+
+    .deck-knob__well::before {
+      content: '';
+      position: absolute;
+      inset: 0.3rem;
+      border-radius: inherit;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0) 42%);
+      mask: radial-gradient(circle at center, transparent 53%, black 54%);
+      opacity: 0.38;
+    }
+
+    .deck-knob__face {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 999px;
+      position: relative;
+      overflow: visible;
+      background:
+        radial-gradient(circle at 34% 30%, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0) 26%),
+        linear-gradient(155deg, rgba(82, 89, 98, 0.95), rgba(27, 31, 39, 0.98) 42%, rgba(10, 12, 17, 0.99));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.05),
+        inset 0 -4px 9px rgba(0, 0, 0, 0.55),
+        0 3px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .deck-knob__face::before {
+      content: '';
+      position: absolute;
+      inset: 0.9rem;
+      border-radius: inherit;
+      border: 1px solid rgba(0, 0, 0, 0.62);
+      background: radial-gradient(circle at 36% 34%, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0.82) 72%);
+      opacity: 0.88;
+      z-index: 1;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+    }
+
+    .deck-knob__face::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0.26rem;
+      width: 0.18rem;
+      height: 0.62rem;
+      border-radius: 0.2rem;
+      background: linear-gradient(180deg, rgba(194, 202, 214, 0.92), rgba(98, 106, 120, 0.96));
+      transform-origin: 50% calc(100% + 0.63rem);
+      transform: translateX(-50%) rotate(var(--knob-angle, -135deg));
+      z-index: 2;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24), inset 0 -1px 0 rgba(0, 0, 0, 0.45);
+    }
+
+    .deck-knob__input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .deck-knob__input:active {
+      cursor: pointer;
+    }
+
+    .deck-knob__input:focus-visible + .deck-knob__well {
+      outline: 1px solid rgba(255, 175, 95, 0.78);
+      outline-offset: 3px;
+      box-shadow:
+        0 0 0 3px rgba(255, 157, 77, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        inset 0 -3px 8px rgba(0, 0, 0, 0.55),
+        0 8px 20px rgba(0, 0, 0, 0.28);
+    }
+
+    .deck-knob__meta {
+      width: 100%;
+      display: grid;
+      justify-items: center;
+      gap: 0.12rem;
+      text-align: center;
+    }
+
+    .deck-knob__legend {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.28rem;
+      min-width: 0;
+      font-size: 0.52rem;
+      letter-spacing: 0.14em;
+      line-height: 1;
+      text-transform: uppercase;
+      color: rgba(231, 238, 247, 0.84);
+    }
+
+    .deck-knob__value {
+      font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      color: rgba(197, 210, 227, 0.86);
+      text-transform: uppercase;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .deck-icon {
+      width: 0.92rem;
+      height: 0.92rem;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex: 0 0 auto;
+    }
+
+    .footer-deck__toggles {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.46rem;
+    }
+
+    .deck-toggle {
+      min-width: 0;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 0.7rem;
+      padding: 0.58rem 0.62rem;
+      background:
+        linear-gradient(180deg, rgba(122, 128, 140, 0.16), rgba(15, 18, 25, 0.96) 28%, rgba(8, 10, 14, 0.98));
+      color: rgba(238, 243, 248, 0.9);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        inset 0 -4px 8px rgba(0, 0, 0, 0.45);
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 0.46rem;
+      text-align: left;
+      transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .deck-toggle:hover,
+    .deck-toggle:focus-visible {
+      border-color: rgba(255, 177, 102, 0.36);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .deck-toggle__label {
+      min-width: 0;
+      display: grid;
+      gap: 0.08rem;
+    }
+
+    .deck-toggle__name {
+      font-size: 0.56rem;
+      line-height: 1;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(236, 240, 245, 0.94);
+    }
+
+    .deck-toggle__sub {
+      font-size: 0.48rem;
+      line-height: 1;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(152, 168, 184, 0.72);
+    }
+
+    .deck-toggle__led {
+      width: 0.46rem;
+      height: 0.46rem;
+      border-radius: 999px;
+      background: rgba(61, 44, 27, 0.8);
+      box-shadow: inset 0 0 0 1px rgba(255, 214, 176, 0.08);
+      transition: background 180ms ease, box-shadow 180ms ease;
+    }
+
+    .deck-toggle[aria-pressed='true'] {
+      border-color: rgba(255, 174, 100, 0.34);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        inset 0 -4px 8px rgba(0, 0, 0, 0.45),
+        0 0 0 1px rgba(255, 135, 48, 0.08);
+    }
+
+    .deck-toggle[aria-pressed='true'] .deck-toggle__led {
+      background: #ffa456;
+      box-shadow:
+        0 0 8px rgba(255, 149, 71, 0.46),
+        0 0 16px rgba(255, 124, 52, 0.22);
+    }
+
+    .deck-toggle[data-led='green'][aria-pressed='true'] .deck-toggle__led {
+      background: #89f0a9;
+      box-shadow:
+        0 0 8px rgba(131, 240, 171, 0.42),
+        0 0 16px rgba(83, 212, 137, 0.18);
+    }
+
+    .footer-deck[data-reduced='true'] .deck-counter,
+    .footer-deck[data-reduced='true'] .deck-direction {
+      opacity: 0.78;
+    }
+
+    .footer-deck[data-reduced='true'] .footer-deck__mark::after {
+      content: ' RM';
+      color: rgba(255, 183, 113, 0.72);
+      margin-left: 0.35rem;
+    }
+
+    .footer-deck[data-mode='mini'] {
+      padding: 0.54rem 0.6rem 0.58rem;
+    }
+
+    .footer-deck[data-mode='mini'] .footer-deck__display,
+    .footer-deck[data-mode='mini'] .footer-deck__toggles {
+      display: none;
+    }
+
+    .footer-deck[data-mode='mini'] .footer-deck__header {
+      margin-bottom: 0.44rem;
+    }
+
+    .footer-deck[data-mode='mini'] .footer-deck__model {
+      display: none;
+    }
+
+    .footer-deck[data-mode='mini'] .footer-deck__controls {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.36rem;
+      margin-bottom: 0;
+    }
+
+    .footer-deck[data-mode='mini'] .deck-knob {
+      gap: 0.12rem;
+    }
+
+    .footer-deck[data-mode='mini'] .deck-knob__well {
+      width: 3.15rem;
+      height: 3.15rem;
+    }
+
+    .footer-deck[data-mode='mini'] .deck-knob__face {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    .footer-deck[data-mode='mini'] .deck-knob__legend {
+      min-height: 0.92rem;
+    }
+
+    .footer-deck[data-mode='mini'] .deck-knob__legend span,
+    .footer-deck[data-mode='mini'] .deck-knob__value {
+      display: none;
+    }
+
+    .footer-deck[data-mode='mini'] .deck-icon {
+      width: 0.96rem;
+      height: 0.96rem;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 767px) {
+      .footer-deck__display {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-deck__controls,
+      .footer-deck__toggles {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .footer-deck[data-mode='mini'] .footer-deck__controls {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
     /* Headings: slight letter-spacing for improved typography */
     h1, h2, h3 { letter-spacing: var(--heading-space); }
 
@@ -391,6 +1043,14 @@
       :is(div,section,article).border.rounded-3xl::before {
         animation: none;
       }
+
+      .footer-bloom__canvas {
+        display: none;
+      }
+
+      .footer-bloom__static-petal {
+        opacity: 0.4;
+      }
     }
   </style>
 </head>
@@ -650,8 +1310,17 @@
       </section>
     </main>
 
-    <footer class="border-t border-white/10">
-      <div class="max-w-6xl mx-auto px-6 py-8 text-sm text-zinc-400">
+    <footer class="border-t border-white/10 footer-bloom" id="site-footer">
+      <div class="footer-bloom__fx" aria-hidden="true">
+        <canvas id="footerBlossomCanvas" class="footer-bloom__canvas"></canvas>
+        <span class="footer-bloom__static-petal" style="--x: 12%; --y: 94%; --s: 0.9;"></span>
+        <span class="footer-bloom__static-petal" style="--x: 24%; --y: 90%; --s: 0.72;"></span>
+        <span class="footer-bloom__static-petal" style="--x: 38%; --y: 96%; --s: 0.84;"></span>
+        <span class="footer-bloom__static-petal" style="--x: 56%; --y: 92%; --s: 0.8;"></span>
+        <span class="footer-bloom__static-petal" style="--x: 71%; --y: 95%; --s: 0.74;"></span>
+        <span class="footer-bloom__static-petal" style="--x: 88%; --y: 93%; --s: 0.88;"></span>
+      </div>
+      <div class="max-w-6xl mx-auto px-6 py-8 text-sm text-zinc-400 footer-bloom__content">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
             <div class="font-semibold text-zinc-100">Kiroku</div>
@@ -667,10 +1336,143 @@
             </ul>
           </div>
 
-          
+          <section class="footer-deck hidden" id="blossomControlPanel" aria-label="Blossom instrument panel" data-mode="expanded">
+            <span class="footer-deck__screw footer-deck__screw--tl" aria-hidden="true"></span>
+            <span class="footer-deck__screw footer-deck__screw--tr" aria-hidden="true"></span>
+            <span class="footer-deck__screw footer-deck__screw--bl" aria-hidden="true"></span>
+            <span class="footer-deck__screw footer-deck__screw--br" aria-hidden="true"></span>
+            <div class="footer-deck__header">
+              <div class="footer-deck__header-right">
+                <button type="button" class="footer-deck__mode" data-blossom-panel-mode aria-pressed="false" aria-label="Switch to mini panel" title="Switch panel mode">
+                  <svg class="footer-deck__mode-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M8 10.5l4-4 4 4" />
+                    <path d="M8 13.5l4 4 4-4" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="footer-deck__display">
+              <div class="deck-counter" aria-live="polite">
+                <div class="deck-counter__cell">
+                  <span class="deck-counter__label">Drop</span>
+                  <span class="deck-counter__value" data-blossom-display="drop">000</span>
+                </div>
+                <div class="deck-counter__cell">
+                  <span class="deck-counter__label">Air</span>
+                  <span class="deck-counter__value" data-blossom-display="active">000</span>
+                </div>
+                <div class="deck-counter__cell">
+                  <span class="deck-counter__label">Rest</span>
+                  <span class="deck-counter__value" data-blossom-display="settled">000</span>
+                </div>
+              </div>
+
+              <div class="deck-direction" aria-live="polite">
+                <div class="deck-direction__head">
+                  <span>Wind Dir</span>
+                  <span data-blossom-display="source">Live</span>
+                </div>
+                <div class="deck-direction__dial">
+                  <div class="deck-direction__compass" data-blossom-direction>
+                    <span class="deck-direction__needle"></span>
+                  </div>
+                  <div class="deck-direction__text">
+                    <span class="deck-direction__value" data-blossom-display="direction">W 270</span>
+                    <span class="deck-direction__mode" data-blossom-display="wind">04.8 MPH</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="footer-deck__controls">
+              <label class="deck-knob" data-knob-shell="petals">
+                <input class="deck-knob__input" type="range" min="0" max="100" step="0.1" value="42" data-blossom-knob="petals" aria-label="Petal density" />
+                <span class="deck-knob__well">
+                  <span class="deck-knob__face"></span>
+                </span>
+                <span class="deck-knob__meta">
+                  <span class="deck-knob__legend">
+                    <svg class="deck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.4c1.8 0 3.4 1.2 3.9 3 .4 1.5-.1 3.2-1.2 4.4-.8.8-1.8 1.4-2.7 2.2-.9-.8-1.9-1.4-2.7-2.2-1.1-1.2-1.6-2.9-1.2-4.4.5-1.8 2.1-3 3.9-3z" /><path d="M12 11.8c.9.8 1.9 1.4 2.7 2.2 1.1 1.2 1.6 2.9 1.2 4.4-.5 1.8-2.1 3-3.9 3s-3.4-1.2-3.9-3c-.4-1.5.1-3.2 1.2-4.4.8-.8 1.8-1.4 2.7-2.2z" /></svg>
+                    <span>Petals</span>
+                  </span>
+                  <span class="deck-knob__value" data-blossom-readout="petals">46</span>
+                </span>
+              </label>
+
+              <label class="deck-knob" data-knob-shell="wind">
+                <input class="deck-knob__input" type="range" min="0" max="100" step="0.1" value="48" data-blossom-knob="wind" aria-label="Wind strength" />
+                <span class="deck-knob__well">
+                  <span class="deck-knob__face"></span>
+                </span>
+                <span class="deck-knob__meta">
+                  <span class="deck-knob__legend">
+                    <svg class="deck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5h10.5c2.3 0 3.5-1.1 3.5-2.8 0-1.4-1-2.4-2.5-2.4-1 0-1.8.4-2.3 1.2" /><path d="M4 12.4h13.3c1.7 0 2.7.9 2.7 2.2 0 1.5-1.1 2.5-2.7 2.5-.9 0-1.7-.3-2.2-.9" /><path d="M4 16.5h7.8" /></svg>
+                    <span>Wind</span>
+                  </span>
+                  <span class="deck-knob__value" data-blossom-readout="wind">1.00x</span>
+                </span>
+              </label>
+
+              <label class="deck-knob" data-knob-shell="air">
+                <input class="deck-knob__input" type="range" min="0" max="100" step="0.1" value="52" data-blossom-knob="air" aria-label="Interactive air response" />
+                <span class="deck-knob__well">
+                  <span class="deck-knob__face"></span>
+                </span>
+                <span class="deck-knob__meta">
+                  <span class="deck-knob__legend">
+                    <svg class="deck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 15.2c2.2-3.4 4.8-5.8 7.7-7.2" /><path d="M11.7 8.1c2.8-.7 4.9-.4 6.3.8" /><path d="M7 18.2c3.5 0 6-1.2 7.5-3.5" /><circle cx="18.4" cy="8.8" r="1.2" /></svg>
+                    <span>Air</span>
+                  </span>
+                  <span class="deck-knob__value" data-blossom-readout="air">1.10x</span>
+                </span>
+              </label>
+
+              <label class="deck-knob" data-knob-shell="gravity">
+                <input class="deck-knob__input" type="range" min="0" max="100" step="0.1" value="40" data-blossom-knob="gravity" aria-label="Gravity" />
+                <span class="deck-knob__well">
+                  <span class="deck-knob__face"></span>
+                </span>
+                <span class="deck-knob__meta">
+                  <span class="deck-knob__legend">
+                    <svg class="deck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11" /><path d="M8.5 11.5L12 15l3.5-3.5" /><path d="M6 19.5h12" /></svg>
+                    <span>Gravity</span>
+                  </span>
+                  <span class="deck-knob__value" data-blossom-readout="gravity">0.024</span>
+                </span>
+              </label>
+            </div>
+
+            <div class="footer-deck__toggles">
+              <button type="button" class="deck-toggle" data-blossom-toggle="weather" data-led="green" aria-pressed="true">
+                <svg class="deck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 15.2a3.2 3.2 0 012.8-4.7 4 4 0 017.6 1.3A2.8 2.8 0 0118.3 17H7.6" /><path d="M9.2 19.2h5.6" /></svg>
+                <span class="deck-toggle__label"><span class="deck-toggle__name">Weather</span><span class="deck-toggle__sub">Live link</span></span>
+                <span class="deck-toggle__led"></span>
+              </button>
+
+              <button type="button" class="deck-toggle" data-blossom-toggle="drift" aria-pressed="true">
+                <svg class="deck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5c2.2 0 3.1-1.9 5.3-1.9s3.1 1.9 5.3 1.9 3.1-1.9 5.4-1.9" /><path d="M4 14.8c2.2 0 3.1-1.9 5.3-1.9s3.1 1.9 5.3 1.9 3.1-1.9 5.4-1.9" /></svg>
+                <span class="deck-toggle__label"><span class="deck-toggle__name">Drift</span><span class="deck-toggle__sub">Ambient bed</span></span>
+                <span class="deck-toggle__led"></span>
+              </button>
+
+              <button type="button" class="deck-toggle" data-blossom-toggle="paddle" aria-pressed="true">
+                <svg class="deck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 15.5c3-4.1 6.8-6.6 11.2-7.4" /><path d="M8.8 18.3c2.5 0 4.5-.7 6.1-2.2" /><circle cx="17.9" cy="8.1" r="1.2" /></svg>
+                <span class="deck-toggle__label"><span class="deck-toggle__name">Paddle</span><span class="deck-toggle__sub">Cursor field</span></span>
+                <span class="deck-toggle__led"></span>
+              </button>
+
+              <button type="button" class="deck-toggle" data-blossom-toggle="glow" aria-pressed="true">
+                <svg class="deck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.2v3.2" /><path d="M12 16.6v3.2" /><path d="M4.2 12h3.2" /><path d="M16.6 12h3.2" /><path d="M6.8 6.8l2.3 2.3" /><path d="M14.9 14.9l2.3 2.3" /><path d="M17.2 6.8l-2.3 2.3" /><path d="M9.1 14.9l-2.3 2.3" /><circle cx="12" cy="12" r="3.2" /></svg>
+                <span class="deck-toggle__label"><span class="deck-toggle__name">Glow</span><span class="deck-toggle__sub">Petal lamp</span></span>
+                <span class="deck-toggle__led"></span>
+              </button>
+            </div>
+          </section>
         </div>
 
-        <div class="mt-6 text-zinc-500">© 2024-2026 Kiroku v1.1.6. Built for calm, reliable digital systems.</div>
+        <div id="blossomFloorLine" class="border-t border-white/10 mt-6" aria-hidden="true"></div>
+        <div class="mt-3 text-zinc-500">© 2024-2026 Kiroku v1.1.6. Built for calm, reliable digital systems.</div>
       </div>
     </footer>
   </div>
@@ -740,6 +1542,1217 @@
             });
         });
       }
+
+      const CHERRY_BLOSSOM_CONFIG = {
+        petalCount: 46,
+        fallRate: 0.26,
+        burstPetalDrop: 16,
+        gravityStrength: 0.024,
+        pileDensity: 0.88,
+        windInfluence: 1.0,
+        sweepThreshold: 15,
+        glowIntensity: 0.78,
+        ambientDrift: 0.02,
+        thresholdFeather: 240,
+        burstStrength: 1.35,
+        burstDecay: 0.94,
+        burstCooldownMs: 650,
+        bottomTolerancePx: 2,
+        pointerWindWeight: 1.1,
+        pointerInfluenceRadius: 144,
+        pointerWakeLength: 6,
+        pointerLift: 0.26,
+        pointerBowPush: 1.2,
+        pointerWakeTurb: 1.4
+      };
+
+      function initFooterCherryBlossom() {
+        const footer = document.getElementById('site-footer');
+        const canvas = document.getElementById('footerBlossomCanvas');
+        const panel = document.getElementById('blossomControlPanel');
+        const floorLine = document.getElementById('blossomFloorLine');
+        if (!footer || !canvas || !panel) {
+          return;
+        }
+        if (footer.dataset.blossomInit === '1') {
+          return;
+        }
+        footer.dataset.blossomInit = '1';
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const debugMode = new URLSearchParams(window.location.search).get('blossomDebug') === '1';
+        const floorOverlapPx = 7;
+
+        const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+        const config = {
+          ...CHERRY_BLOSSOM_CONFIG,
+          petalCount: isCoarsePointer ? Math.max(22, Math.floor(CHERRY_BLOSSOM_CONFIG.petalCount * 0.62)) : CHERRY_BLOSSOM_CONFIG.petalCount,
+          fallRate: isCoarsePointer ? CHERRY_BLOSSOM_CONFIG.fallRate * 0.78 : CHERRY_BLOSSOM_CONFIG.fallRate,
+          pileDensity: isCoarsePointer ? CHERRY_BLOSSOM_CONFIG.pileDensity * 0.85 : CHERRY_BLOSSOM_CONFIG.pileDensity
+        };
+
+        const ctx = canvas.getContext('2d', { alpha: true });
+        if (!ctx) {
+          return;
+        }
+
+        const baseTuning = {
+          petalCount: config.petalCount,
+          burstPetalDrop: config.burstPetalDrop,
+          gravityStrength: config.gravityStrength,
+          windInfluence: config.windInfluence,
+          ambientDrift: config.ambientDrift,
+          glowIntensity: config.glowIntensity,
+          pointerWindWeight: config.pointerWindWeight,
+          pointerWakeTurb: config.pointerWakeTurb,
+          pointerBowPush: config.pointerBowPush,
+          pointerLift: config.pointerLift
+        };
+
+        const activePetals = [];
+        const settledPetals = [];
+        let pileBins = [];
+        let terrainBins = [];
+
+        let width = 0;
+        let height = 0;
+        let floorLineY = 0;
+        let dpr = 1;
+        let rafId = 0;
+        let lastTime = performance.now();
+        let spawnCarry = 0;
+        let scrollImpulse = 0;
+        let weatherTimestamp = 0;
+        let burstEnergy = 0;
+        let lastBurstAt = 0;
+        let wasAtBottom = false;
+        let touchY = null;
+        const debugState = {
+          triggerCount: 0,
+          totalSpawned: 0,
+          burstSpawned: 0,
+          activeCount: 0,
+          settledCount: 0,
+          renderedActive: 0,
+          renderedSettled: 0,
+          visibleActive: 0,
+          visibleSettled: 0,
+          lastPointerImpulse: 0,
+          maxPointerImpulse: 0,
+          pointerImpulseFrames: 0,
+          lastTriggerAt: 0,
+          footerTop: 0,
+          canvasTop: 0,
+          floorLineTop: 0,
+          floorLineBottom: 0,
+          floorLineY: 0,
+          floorRenderY: 0,
+          canvasCssHeight: 0,
+          canvasPixelHeight: 0,
+          devicePixelRatio: 1,
+          settleThresholdY: 0,
+          settleEvents: 0,
+          firstActiveY: null,
+          firstSettledY: null,
+          firstSettledBaseY: null,
+          pileMass: 0,
+          pilePeak: 0,
+          pileContributors: 0,
+          culledSettled: 0
+        };
+
+        const weather = {
+          source: 'fallback',
+          windMph: 4.8,
+          windFromDeg: 270,
+          windX: 0.12,
+          windY: 0
+        };
+
+        const ambient = {
+          x: 0,
+          y: 0,
+          tx: 0,
+          ty: 0
+        };
+
+        const pointerWind = {
+          x: 0,
+          y: 0,
+          vx: 0,
+          vy: 0,
+          active: false,
+          inRange: false,
+          strength: 0,
+          speed: 0,
+          lastMoveAt: 0,
+          timestamp: 0,
+          wake: []        // ring buffer of { x, y } trail points
+        };
+
+        const weatherBase = {
+          mph: 4.8,
+          fromDeg: 270,
+          source: 'fallback-default'
+        };
+
+        const panelState = {
+          weatherLinked: true,
+          ambientEnabled: true,
+          interactiveEnabled: true,
+          glowEnabled: true,
+          miniMode: false,
+          windTrim: 1,
+          manualWindMph: 7.5,
+          manualWindDeg: 270
+        };
+
+        const knobElements = {
+          petals: panel.querySelector('[data-blossom-knob="petals"]'),
+          wind: panel.querySelector('[data-blossom-knob="wind"]'),
+          air: panel.querySelector('[data-blossom-knob="air"]'),
+          gravity: panel.querySelector('[data-blossom-knob="gravity"]')
+        };
+        const readoutElements = {
+          petals: panel.querySelector('[data-blossom-readout="petals"]'),
+          wind: panel.querySelector('[data-blossom-readout="wind"]'),
+          air: panel.querySelector('[data-blossom-readout="air"]'),
+          gravity: panel.querySelector('[data-blossom-readout="gravity"]')
+        };
+        const displayElements = {
+          drop: panel.querySelector('[data-blossom-display="drop"]'),
+          active: panel.querySelector('[data-blossom-display="active"]'),
+          settled: panel.querySelector('[data-blossom-display="settled"]'),
+          direction: panel.querySelector('[data-blossom-display="direction"]'),
+          wind: panel.querySelector('[data-blossom-display="wind"]'),
+          source: panel.querySelector('[data-blossom-display="source"]')
+        };
+        const directionDial = panel.querySelector('[data-blossom-direction]');
+        const modeButton = panel.querySelector('[data-blossom-panel-mode]');
+        const toggleElements = {
+          weather: panel.querySelector('[data-blossom-toggle="weather"]'),
+          drift: panel.querySelector('[data-blossom-toggle="drift"]'),
+          paddle: panel.querySelector('[data-blossom-toggle="paddle"]'),
+          glow: panel.querySelector('[data-blossom-toggle="glow"]')
+        };
+
+        const rand = (min, max) => min + Math.random() * (max - min);
+        const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+        const mapRange = (value, inMin, inMax, outMin, outMax) => outMin + ((value - inMin) / (inMax - inMin)) * (outMax - outMin);
+
+        function formatCounter(value) {
+          return String(Math.round(value)).padStart(3, '0');
+        }
+
+        function floorBaseY() {
+          return Math.min(height - 2, Math.max(0, floorLineY + floorOverlapPx));
+        }
+
+        function cardinalFromDeg(deg) {
+          const labels = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+          return labels[Math.round((((deg % 360) + 360) % 360) / 45) % labels.length];
+        }
+
+        function updateKnobVisual(input) {
+          if (!input) {
+            return;
+          }
+          const shell = input.closest('[data-knob-shell]');
+          if (!shell) {
+            return;
+          }
+          const min = Number(input.min || 0);
+          const max = Number(input.max || 100);
+          const value = Number(input.value);
+          const ratio = max === min ? 0 : clamp((value - min) / (max - min), 0, 1);
+          shell.style.setProperty('--knob-angle', `${-135 + ratio * 270}deg`);
+        }
+
+        function syncPanelMode() {
+          panel.dataset.mode = panelState.miniMode ? 'mini' : 'expanded';
+          if (!modeButton) {
+            return;
+          }
+          modeButton.setAttribute('aria-pressed', String(panelState.miniMode));
+          const label = panelState.miniMode ? 'Switch to expanded panel' : 'Switch to mini panel';
+          modeButton.setAttribute('aria-label', label);
+          modeButton.setAttribute('title', label);
+        }
+
+        function updateDisplayTelemetry() {
+          if (displayElements.drop) {
+            displayElements.drop.textContent = formatCounter(debugState.burstSpawned);
+          }
+          if (displayElements.active) {
+            displayElements.active.textContent = formatCounter(debugState.activeCount);
+          }
+          if (displayElements.settled) {
+            displayElements.settled.textContent = formatCounter(debugState.settledCount);
+          }
+          if (displayElements.direction) {
+            const deg = Math.round(weather.windFromDeg);
+            displayElements.direction.textContent = `${cardinalFromDeg(deg)} ${String(deg).padStart(3, '0')}`;
+          }
+          if (displayElements.wind) {
+            displayElements.wind.textContent = `${weather.windMph.toFixed(1).padStart(4, '0')} MPH`;
+          }
+          if (displayElements.source) {
+            displayElements.source.textContent = panelState.weatherLinked ? 'Live' : 'Manual';
+          }
+          if (directionDial) {
+            directionDial.style.setProperty('--wind-angle', `${((weather.windFromDeg + 180) % 360).toFixed(1)}deg`);
+          }
+        }
+
+        function syncToggleStates() {
+          toggleElements.weather.setAttribute('aria-pressed', String(panelState.weatherLinked));
+          toggleElements.drift.setAttribute('aria-pressed', String(panelState.ambientEnabled));
+          toggleElements.paddle.setAttribute('aria-pressed', String(panelState.interactiveEnabled));
+          toggleElements.glow.setAttribute('aria-pressed', String(panelState.glowEnabled));
+        }
+
+        function applyWindProfile() {
+          const direction = panelState.weatherLinked ? weatherBase.fromDeg : panelState.manualWindDeg;
+          const mph = panelState.weatherLinked
+            ? weatherBase.mph * panelState.windTrim
+            : panelState.manualWindMph * panelState.windTrim;
+          applyWeatherWind(mph, direction, panelState.weatherLinked ? weatherBase.source : 'manual-panel');
+        }
+
+        function applyPanelTuning() {
+          const petalValue = Number(knobElements.petals.value);
+          const windValue = Number(knobElements.wind.value);
+          const airValue = Number(knobElements.air.value);
+          const gravityValue = Number(knobElements.gravity.value);
+
+          config.petalCount = Math.round(mapRange(petalValue, 0, 100, 24, 84));
+          config.burstPetalDrop = Math.round(mapRange(petalValue, 0, 100, 8, 28));
+          panelState.windTrim = mapRange(windValue, 0, 100, 0.35, 1.9);
+          config.windInfluence = baseTuning.windInfluence * mapRange(windValue, 0, 100, 0.55, 1.9);
+          config.gravityStrength = mapRange(gravityValue, 0, 100, 0.012, 0.045);
+          config.pointerWindWeight = panelState.interactiveEnabled ? mapRange(airValue, 0, 100, 0.45, 2.05) : 0;
+          config.pointerWakeTurb = baseTuning.pointerWakeTurb * mapRange(airValue, 0, 100, 0.65, 1.65);
+          config.pointerBowPush = baseTuning.pointerBowPush * mapRange(airValue, 0, 100, 0.72, 1.55);
+          config.pointerLift = baseTuning.pointerLift * mapRange(airValue, 0, 100, 0.65, 1.5);
+          config.ambientDrift = panelState.ambientEnabled ? baseTuning.ambientDrift : 0;
+          config.glowIntensity = panelState.glowEnabled ? baseTuning.glowIntensity : 0.22;
+
+          if (readoutElements.petals) {
+            readoutElements.petals.textContent = String(config.petalCount);
+          }
+          if (readoutElements.wind) {
+            readoutElements.wind.textContent = `${panelState.windTrim.toFixed(2)}x`;
+          }
+          if (readoutElements.air) {
+            readoutElements.air.textContent = `${config.pointerWindWeight.toFixed(2)}x`;
+          }
+          if (readoutElements.gravity) {
+            readoutElements.gravity.textContent = config.gravityStrength.toFixed(3);
+          }
+
+          applyWindProfile();
+          updateDisplayTelemetry();
+        }
+
+        function bindPanelControls() {
+          Object.values(knobElements).forEach((input) => {
+            if (!input) {
+              return;
+            }
+            updateKnobVisual(input);
+            input.addEventListener('input', () => {
+              updateKnobVisual(input);
+              applyPanelTuning();
+            });
+          });
+
+          if (modeButton) {
+            modeButton.addEventListener('click', () => {
+              panelState.miniMode = !panelState.miniMode;
+              syncPanelMode();
+            });
+          }
+
+          toggleElements.weather.addEventListener('click', () => {
+            panelState.weatherLinked = !panelState.weatherLinked;
+            syncToggleStates();
+            applyPanelTuning();
+          });
+
+          toggleElements.drift.addEventListener('click', () => {
+            panelState.ambientEnabled = !panelState.ambientEnabled;
+            syncToggleStates();
+            applyPanelTuning();
+          });
+
+          toggleElements.paddle.addEventListener('click', () => {
+            panelState.interactiveEnabled = !panelState.interactiveEnabled;
+            if (!panelState.interactiveEnabled) {
+              pointerWind.active = false;
+              pointerWind.inRange = false;
+              pointerWind.speed = 0;
+            }
+            syncToggleStates();
+            applyPanelTuning();
+          });
+
+          toggleElements.glow.addEventListener('click', () => {
+            panelState.glowEnabled = !panelState.glowEnabled;
+            syncToggleStates();
+            applyPanelTuning();
+          });
+        }
+
+        function buildBins() {
+          const bins = Math.max(32, Math.round(width / 24));
+          pileBins = new Array(bins).fill(0);
+          terrainBins = new Array(bins).fill(0).map((_, i) => {
+            const t = i / Math.max(1, bins - 1);
+            const edgeFade = Math.sin(t * Math.PI) ** 1.25;
+            return rand(1.5, 4.5) * edgeFade;
+          });
+        }
+
+        function rebuildPileBinsFromSettled() {
+          const pileMax = Math.min(height * 0.32, 44 + config.pileDensity * 72);
+          for (let i = 0; i < pileBins.length; i += 1) {
+            pileBins[i] = 0;
+          }
+
+          for (let i = 0; i < settledPetals.length; i += 1) {
+            const p = settledPetals[i];
+            const idx = clamp(Math.round((p.x / Math.max(1, width)) * (pileBins.length - 1)), 0, pileBins.length - 1);
+            const growth = (1.05 + p.depth * 1.3) * config.pileDensity;
+            for (let j = -2; j <= 2; j += 1) {
+              const ii = idx + j;
+              if (ii < 0 || ii >= pileBins.length) {
+                continue;
+              }
+              const falloff = 1 - Math.abs(j) / 2.6;
+              pileBins[ii] = clamp(pileBins[ii] + growth * falloff, 0, pileMax);
+            }
+          }
+        }
+
+        function updatePileDebugState() {
+          let pileMass = 0;
+          let pilePeak = 0;
+          for (let i = 0; i < pileBins.length; i += 1) {
+            const h = pileBins[i] + terrainAtBin(i);
+            pileMass += h;
+            pilePeak = Math.max(pilePeak, h);
+          }
+          debugState.pileMass = pileMass;
+          debugState.pilePeak = pilePeak;
+          debugState.pileContributors = settledPetals.length;
+        }
+
+        function resize() {
+          const footerRect = footer.getBoundingClientRect();
+          const canvasRect = canvas.getBoundingClientRect();
+          width = Math.max(1, canvasRect.width || footerRect.width);
+          height = Math.max(1, canvasRect.height || footerRect.height);
+          dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+          canvas.width = Math.round(width * dpr);
+          canvas.height = Math.round(height * dpr);
+          canvas.style.width = width + 'px';
+          canvas.style.height = height + 'px';
+
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+          if (floorLine) {
+            const floorRect = floorLine.getBoundingClientRect();
+            floorLineY = clamp(floorRect.top - canvasRect.top, 0, height - 2);
+            debugState.floorLineTop = floorRect.top;
+            debugState.floorLineBottom = floorRect.bottom;
+          } else {
+            floorLineY = height - 2;
+            debugState.floorLineTop = footerRect.bottom - 2;
+            debugState.floorLineBottom = footerRect.bottom - 1;
+          }
+
+          debugState.footerTop = footerRect.top;
+          debugState.canvasTop = canvasRect.top;
+          debugState.floorLineY = floorLineY;
+          debugState.floorRenderY = floorBaseY();
+          debugState.canvasCssHeight = height;
+          debugState.canvasPixelHeight = canvas.height;
+          debugState.devicePixelRatio = dpr;
+
+          buildBins();
+
+          // Preserve simulation state across viewport changes to avoid accidental resets.
+          for (let i = 0; i < settledPetals.length; i += 1) {
+            settledPetals[i].x = clamp(settledPetals[i].x, 2, width - 2);
+          }
+          for (let i = 0; i < activePetals.length; i += 1) {
+            activePetals[i].x = clamp(activePetals[i].x, -18, width + 18);
+            activePetals[i].y = clamp(activePetals[i].y, -22, height + 22);
+          }
+
+          // Rebuild pile profile from current settled petals after bins are recreated.
+          rebuildPileBinsFromSettled();
+          updatePileDebugState();
+        }
+
+        function createPetal(seedX, seedY) {
+          const depth = rand(0.58, 1.22);
+          const lift = weather.windMph > config.sweepThreshold ? rand(-0.08, -0.02) : rand(-0.02, 0.03);
+          const flutterFreq = rand(0.00105, 0.00195) * (1.08 - depth * 0.2);
+          return {
+            x: typeof seedX === 'number' ? seedX : rand(-12, width + 12),
+            y: typeof seedY === 'number' ? seedY : rand(-18, 8),
+            vx: weather.windX * rand(0.2, 1.1) + rand(-0.025, 0.025),
+            vy: rand(0.03, 0.12) + lift,
+            angle: rand(0, Math.PI * 2),
+            spin: rand(-0.018, 0.018),
+            depth,
+            size: rand(5.8, 11.2) * depth,
+            wobble: rand(0.3, 1.1),
+            flutterPhase: rand(0, Math.PI * 2),
+            flutterFreq,
+            glide: rand(-1, 1),
+            tumbleRate: rand(0.78, 1.22),
+            roll: rand(0, Math.PI * 2),
+            hueShift: rand(-8, 10),
+            alpha: rand(0.28, 0.52)
+          };
+        }
+
+        function drawPetal(petal, settled) {
+          const settleScale = settled ? 0.86 : 1;
+          const glow = config.glowIntensity * petal.depth * settleScale;
+          const rollEdge = settled ? 0 : Math.abs(Math.sin(petal.roll || 0));
+          const alpha = petal.alpha * settleScale * (settled ? 1 : (0.9 + (1 - rollEdge) * 0.16));
+          const pink = 184 + petal.hueShift;
+
+          // Sakura silhouette — two lobes with a cleft, varied per petal via wobble.
+          // All four constants are derived from the already-stored wobble (0.3–1.1)
+          // so no extra per-petal data is required.
+          const nw  = 0.22 + petal.wobble * 0.08;    // lobe half-width  0.244–0.308
+          const nd  = 0.32 + petal.wobble * 0.10;    // notch depth      0.356–0.432
+          const asy = (petal.wobble - 0.7) * 0.05;   // lobe asymmetry  −0.020–+0.020
+          const ysc = 0.60 + petal.wobble * 0.14;    // aspect ratio     0.642–0.754
+          const tumbleWidth = settled ? 1 : 0.86 + (1 - rollEdge) * 0.2;
+          const tumbleDepth = settled ? 1 : 0.95 + rollEdge * 0.1;
+
+          ctx.save();
+          ctx.translate(petal.x, petal.y);
+          ctx.rotate(petal.angle);
+          ctx.scale(petal.size * tumbleWidth, petal.size * ysc * tumbleDepth);
+
+          ctx.beginPath();
+          ctx.moveTo(nw, -0.94);                                              // right lobe tip
+          ctx.bezierCurveTo(0.88, -0.50, 0.98, 0.36, 0.20, 0.90);           // right side to base
+          ctx.bezierCurveTo(-0.56, 0.76, -0.96, -0.20, -nw, -0.94 - asy);   // base + left side → left lobe
+          ctx.bezierCurveTo(                                                  // cleft: left lobe → valley → right lobe
+            -nw * 0.22, -(0.94 - nd) - asy * 0.5,
+             nw * 0.22, -(0.94 - nd),
+            nw, -0.94
+          );
+          ctx.closePath();
+
+          ctx.fillStyle = `rgba(247, ${pink}, 224, ${alpha})`;
+          ctx.shadowColor = `rgba(255, 109, 190, ${0.4 * glow})`;
+          ctx.shadowBlur = 15 * glow;
+          ctx.fill();
+
+          ctx.strokeStyle = `rgba(255, 232, 246, ${0.26 + petal.depth * 0.08})`;
+          ctx.lineWidth = 0.05;
+          ctx.stroke();
+
+          ctx.restore();
+        }
+
+        function terrainAtBin(index) {
+          if (terrainBins.length === 0) {
+            return 0;
+          }
+          return terrainBins[clamp(index, 0, terrainBins.length - 1)];
+        }
+
+        function pileHeightAt(x) {
+          if (pileBins.length <= 1) {
+            return 0;
+          }
+          const ratio = clamp(x / width, 0, 0.999999);
+          const index = ratio * (pileBins.length - 1);
+          const i0 = Math.floor(index);
+          const i1 = Math.min(pileBins.length - 1, i0 + 1);
+          const mix = index - i0;
+          const h0 = pileBins[i0] + terrainAtBin(i0);
+          const h1 = pileBins[i1] + terrainAtBin(i1);
+          return h0 + (h1 - h0) * mix;
+        }
+
+        function settlePetal(petal) {
+          const idx = clamp(Math.round((petal.x / Math.max(1, width)) * (pileBins.length - 1)), 0, pileBins.length - 1);
+          const pileMax = Math.min(height * 0.32, 44 + config.pileDensity * 72);
+          const growth = (1.1 + petal.depth * 1.5) * config.pileDensity;
+
+          for (let i = -2; i <= 2; i += 1) {
+            const ii = idx + i;
+            if (ii < 0 || ii >= pileBins.length) {
+              continue;
+            }
+            const falloff = 1 - Math.abs(i) / 2.6;
+            pileBins[ii] = clamp(pileBins[ii] + growth * falloff, 0, pileMax);
+          }
+
+          const settledX = clamp(petal.x + rand(-4.5, 4.5), 2, width - 2);
+          const settledBaseY = floorBaseY() - pileHeightAt(settledX);
+          settledPetals.push({
+            x: settledX,
+            y: settledBaseY + rand(-1.8, 0.5),
+            angle: petal.angle + rand(-0.25, 0.25),
+            spin: rand(-0.0012, 0.0012),
+            depth: petal.depth,
+            size: petal.size,
+            wobble: petal.wobble,
+            hueShift: petal.hueShift,
+            alpha: petal.alpha * 0.96
+          });
+
+          debugState.settleEvents += 1;
+          debugState.firstSettledBaseY = settledBaseY;
+
+          if (settledPetals.length > config.petalCount * 2) {
+            const removed = settledPetals.length - config.petalCount * 2;
+            settledPetals.splice(0, removed);
+            debugState.culledSettled += removed;
+            rebuildPileBinsFromSettled();
+          }
+        }
+
+        function activationFromThreshold() {
+          const rect = footer.getBoundingClientRect();
+          const distance = rect.top - window.innerHeight;
+          const feather = config.thresholdFeather;
+          return clamp(1 - (distance + feather) / (feather * 2), 0, 1);
+        }
+
+        function computeWindVector(fromDeg, mph) {
+          const toDeg = (fromDeg + 180) % 360;
+          const rad = (toDeg * Math.PI) / 180;
+          const unitX = Math.sin(rad);
+          const unitY = -Math.cos(rad);
+          const strength = clamp(mph / 20, 0.06, 1.4);
+          return {
+            x: unitX * strength,
+            y: unitY * strength * 0.25
+          };
+        }
+
+        function applyWeatherWind(mph, fromDeg, source) {
+          const clampedMph = clamp(mph, 0, 48);
+          const dir = Number.isFinite(fromDeg) ? ((fromDeg % 360) + 360) % 360 : 270;
+          const vec = computeWindVector(dir, clampedMph);
+
+          weather.windMph = clampedMph;
+          weather.windFromDeg = dir;
+          weather.windX = vec.x;
+          weather.windY = vec.y;
+          weather.source = source;
+          weatherTimestamp = Date.now();
+        }
+
+        function getLocation() {
+          return new Promise((resolve) => {
+            if (!('geolocation' in navigator)) {
+              resolve({ latitude: 35.6762, longitude: 139.6503, source: 'fallback' });
+              return;
+            }
+
+            let done = false;
+            const timeout = window.setTimeout(() => {
+              if (!done) {
+                done = true;
+                resolve({ latitude: 35.6762, longitude: 139.6503, source: 'fallback' });
+              }
+            }, 2600);
+
+            navigator.geolocation.getCurrentPosition(
+              (pos) => {
+                if (done) {
+                  return;
+                }
+                done = true;
+                window.clearTimeout(timeout);
+                resolve({ latitude: pos.coords.latitude, longitude: pos.coords.longitude, source: 'geolocation' });
+              },
+              () => {
+                if (done) {
+                  return;
+                }
+                done = true;
+                window.clearTimeout(timeout);
+                resolve({ latitude: 35.6762, longitude: 139.6503, source: 'fallback' });
+              },
+              { maximumAge: 21600000, timeout: 2200, enableHighAccuracy: false }
+            );
+          });
+        }
+
+        async function syncWeather() {
+          try {
+            const loc = await getLocation();
+            const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${encodeURIComponent(loc.latitude)}&longitude=${encodeURIComponent(loc.longitude)}&daily=windspeed_10m_max,winddirection_10m_dominant&forecast_days=1&timezone=auto`;
+            const response = await fetch(weatherUrl, { method: 'GET' });
+            if (!response.ok) {
+              throw new Error('Weather request failed');
+            }
+
+            const payload = await response.json();
+            const kmh = payload && payload.daily && payload.daily.windspeed_10m_max && Number(payload.daily.windspeed_10m_max[0]);
+            const fromDeg = payload && payload.daily && payload.daily.winddirection_10m_dominant && Number(payload.daily.winddirection_10m_dominant[0]);
+            if (!Number.isFinite(kmh) || !Number.isFinite(fromDeg)) {
+              throw new Error('Incomplete weather payload');
+            }
+
+            const mph = kmh * 0.621371;
+            weatherBase.mph = mph;
+            weatherBase.fromDeg = fromDeg;
+            weatherBase.source = loc.source === 'geolocation' ? 'live-geolocated' : 'live-fallback-location';
+            panelState.manualWindDeg = fromDeg;
+            applyWindProfile();
+          } catch (_) {
+            weatherBase.mph = 4.8;
+            weatherBase.fromDeg = 270;
+            weatherBase.source = 'fallback-default';
+            panelState.manualWindDeg = 270;
+            applyWindProfile();
+          }
+          updateDisplayTelemetry();
+        }
+
+        function spawnPetals(frameScale) {
+          const windBias = clamp(weather.windX * 0.24, -0.24, 0.24);
+          const spawnRate = config.fallRate * burstEnergy * (0.6 + scrollImpulse * 0.4);
+          spawnCarry += spawnRate * frameScale;
+
+          while (spawnCarry >= 1 && activePetals.length + settledPetals.length < config.petalCount * 2.3) {
+            const x = rand(width * (0.08 + windBias), width * (0.92 + windBias));
+            activePetals.push(createPetal(clamp(x, -18, width + 18), rand(-20, 8)));
+            spawnCarry -= 1;
+          }
+        }
+
+        function atBottomOfPage() {
+          const scrollHeight = document.documentElement.scrollHeight;
+          return window.scrollY + window.innerHeight >= scrollHeight - config.bottomTolerancePx;
+        }
+
+        function triggerBurst(strengthBoost) {
+          const now = performance.now();
+          if (now - lastBurstAt < config.burstCooldownMs) {
+            return;
+          }
+          lastBurstAt = now;
+          debugState.triggerCount += 1;
+          debugState.lastTriggerAt = now;
+
+          const burstScale = clamp(strengthBoost || 1, 0.6, 1.8);
+          const burstCount = Math.max(6, Math.round(config.burstPetalDrop * burstScale));
+          let spawnedNow = 0;
+          for (let i = 0; i < burstCount && activePetals.length + settledPetals.length < config.petalCount * 2.3; i += 1) {
+            const x = rand(width * 0.08, width * 0.92);
+            activePetals.push(createPetal(clamp(x, -18, width + 18), rand(-24, 4)));
+            spawnedNow += 1;
+          }
+
+          debugState.burstSpawned = spawnedNow;
+          debugState.totalSpawned += spawnedNow;
+          burstEnergy = clamp(burstEnergy + config.burstStrength * (strengthBoost || 1), 0, 2.6);
+          scrollImpulse = clamp(scrollImpulse + 0.35, 0, 1.8);
+        }
+
+        function updateAmbient(frameScale) {
+          if (!panelState.ambientEnabled) {
+            ambient.x *= 0.88;
+            ambient.y *= 0.88;
+            ambient.tx = 0;
+            ambient.ty = 0;
+            return;
+          }
+          const windErratic = weather.windMph < 8 ? 0.018 : 0.01;
+          if (Math.random() < 0.018 * frameScale) {
+            ambient.tx = rand(-windErratic, windErratic);
+            ambient.ty = rand(-0.008, 0.004);
+          }
+          ambient.x += (ambient.tx - ambient.x) * 0.032 * frameScale;
+          ambient.y += (ambient.ty - ambient.y) * 0.028 * frameScale;
+          ambient.tx *= 0.994;
+          ambient.ty *= 0.992;
+        }
+
+        // ── Paddle physics: bow wave + lateral wash + turbulent wake ─────
+        //
+        // Coordinate frame: cursor travels along (dirX, dirY).
+        // For each petal at (x, y) we decompose the offset into:
+        //   along  – component parallel to travel (positive = ahead of cursor)
+        //   across – component perpendicular to travel
+        //
+        // Zones:
+        //   BOW    ahead of cursor (along > 0): pressure wave, pushes petals
+        //          sideways + forward, strength peaks at the tip.
+        //   FLANK  beside the cursor (|along| near 0): lateral wash.
+        //   WAKE   behind the cursor (along < 0): turbulent low-pressure zone
+        //          that sucks petals upward and adds rotational chaos.
+        //
+        // Everything is multiplied by pointerWind.speed so slow = gentle, fast = dramatic.
+
+        function pointerForceAt(x, y) {
+          if (!panelState.interactiveEnabled) {
+            return { fx: 0, fy: 0, lift: 0, impulse: 0 };
+          }
+          if (!pointerWind.active || !pointerWind.inRange || pointerWind.speed < 0.008) {
+            return { fx: 0, fy: 0, lift: 0, impulse: 0 };
+          }
+
+          const spd = pointerWind.speed;
+          // Speed gate: below threshold, effect fades gracefully
+          const speedGate = clamp((spd - 0.008) / 0.14, 0, 1);
+          if (speedGate < 0.001) {
+            return { fx: 0, fy: 0, lift: 0, impulse: 0 };
+          }
+
+          const radius = config.pointerInfluenceRadius;
+          const dirX = pointerWind.vx / spd;
+          const dirY = pointerWind.vy / spd;
+          // Perpendicular (rightward lateral axis)
+          const perpX = -dirY;
+          const perpY =  dirX;
+
+          // ── 1. BOW WAVE — elliptical pressure lobe ahead of cursor ──
+          const dx = x - pointerWind.x;
+          const dy = y - pointerWind.y;
+          const along  = dx * dirX  + dy * dirY;
+          const across = dx * perpX + dy * perpY;
+          // Ellipse: tighter laterally, stretched ahead
+          const bowRx = radius * 0.58;  // lateral radius
+          const bowRy = radius * 0.88;  // forward radius
+          const bowDist = Math.hypot(across / bowRx, along / bowRy);
+
+          let fx = 0, fy = 0, lift = 0;
+
+          if (along >= -radius * 0.18 && bowDist < 1.0) {
+            // Falloff: sharpest at the tip (along ≈ bowRy), gentler at sides
+            const bowFalloff = (1 - bowDist) ** 1.5;
+            const bowStrength = spd * speedGate * config.pointerBowPush * bowFalloff;
+
+            // Push ahead along travel direction
+            fx += dirX * bowStrength * 0.14;
+            fy += dirY * bowStrength * 0.1;
+
+            // Push laterally outward from centreline (across is signed, so this splays petals)
+            const lateralSign = across >= 0 ? 1 : -1;
+            const lateralMag = Math.abs(across) / Math.max(1, bowRx);
+            const lateralStrength = bowStrength * lateralMag * 0.6;
+            fx += perpX * lateralSign * lateralStrength * 0.11;
+            fy += perpY * lateralSign * lateralStrength * 0.076;
+
+            lift -= bowStrength * 0.03; // bow slightly suppresses (petals pressed down at front)
+          }
+
+          // ── 2. TURBULENT WAKE — low-pressure behind cursor ──
+          // Sample the stored trail to find the nearest wake segment
+          const wake = pointerWind.wake;
+          let minWakeDist = Infinity;
+          let wakeSegNorm = 0;
+          for (let w = 0; w < wake.length; w += 1) {
+            const wd = Math.hypot(x - wake[w].x, y - wake[w].y);
+            if (wd < minWakeDist) {
+              minWakeDist = wd;
+              // How old is this point? 0 = freshest, 1 = oldest
+              wakeSegNorm = w / Math.max(1, wake.length - 1);
+            }
+          }
+
+          const wakeRadius = radius * 0.72;
+          if (minWakeDist < wakeRadius) {
+            const wakeFalloff = (1 - minWakeDist / wakeRadius) ** 1.8;
+            // Fresh wake (near cursor tail) = strong; old wake = fading
+            const wakeAge = 1 - wakeSegNorm;
+            const wakeStrength = spd * speedGate * config.pointerWakeTurb * wakeFalloff * wakeAge;
+
+            // Upward lift — the primary wake effect
+            lift += wakeStrength * config.pointerLift * 0.44;
+
+            // Rotational turbulence: clockwise on right side of wake, counter on left
+            const rightOfWake = (dx * perpX + dy * perpY);
+            const turbSpin = rightOfWake >= 0 ? 1 : -1;
+            fx += perpX * turbSpin * wakeStrength * 0.046;
+            fy += perpY * turbSpin * wakeStrength * 0.032;
+          }
+
+          const pointerScale = config.pointerWindWeight;
+          fx *= pointerScale;
+          fy *= pointerScale;
+          lift *= pointerScale;
+          const impulse = Math.hypot(fx, fy) + lift;
+          debugState.lastPointerImpulse = impulse;
+          debugState.maxPointerImpulse = Math.max(debugState.maxPointerImpulse, impulse);
+          if (impulse > 0.001) {
+            debugState.pointerImpulseFrames += 1;
+          }
+          return { fx, fy, lift, impulse };
+        }
+
+        function updateSettled(frameScale, sweepFactor, windForceX) {
+          if (pileBins.length > 0 && sweepFactor > 0) {
+            for (let i = 0; i < pileBins.length; i += 1) {
+              const t = i / Math.max(1, pileBins.length - 1);
+              const sideWeight = windForceX >= 0 ? (1 - t) : t;
+              pileBins[i] *= 1 - (0.0009 * frameScale * (0.55 + sweepFactor * 1.6) * (0.8 + sideWeight));
+            }
+          }
+
+          let removedSettled = 0;
+          for (let i = settledPetals.length - 1; i >= 0; i -= 1) {
+            const p = settledPetals[i];
+            const pointerKick = pointerForceAt(p.x, p.y);
+            p.angle += (p.spin + ambient.x * 0.04) * frameScale;
+            p.x += (ambient.x * 0.35 + windForceX * 0.16 + pointerKick.fx * 1.35) * frameScale;
+            p.y = floorBaseY() - pileHeightAt(p.x) + Math.sin(lastTime * 0.0012 + p.wobble * 8) * 0.25;
+
+            if (pointerKick.impulse > 0.006 && Math.random() < 0.16 * pointerKick.impulse * frameScale) {
+              settledPetals.splice(i, 1);
+              removedSettled += 1;
+              const lifted = createPetal(p.x, p.y - rand(1, 6));
+              lifted.vx  = pointerKick.fx * rand(8, 16);
+              lifted.vy  = -(pointerKick.lift * rand(1.6, 3.0) + pointerKick.impulse * 0.12);
+              lifted.spin = rand(-0.022, 0.022) * (1 + pointerWind.speed * 0.4);
+              lifted.angle = p.angle;
+              lifted.depth = p.depth;
+              lifted.size  = p.size;
+              lifted.alpha = clamp(p.alpha * 1.04, 0.22, 0.62);
+              activePetals.push(lifted);
+              continue;
+            }
+
+            if (sweepFactor > 0 && Math.random() < 0.012 * sweepFactor * frameScale) {
+              settledPetals.splice(i, 1);
+              removedSettled += 1;
+              activePetals.push(createPetal(p.x, p.y - rand(3, 14)));
+              continue;
+            }
+
+            if (p.x < -20 || p.x > width + 20) {
+              settledPetals.splice(i, 1);
+              removedSettled += 1;
+            }
+          }
+
+          if (removedSettled > 0) {
+            debugState.culledSettled += removedSettled;
+            rebuildPileBinsFromSettled();
+          }
+
+          updatePileDebugState();
+        }
+
+        function updateActive(frameScale, windForceX, windForceY, sweepFactor) {
+          for (let i = activePetals.length - 1; i >= 0; i -= 1) {
+            const p = activePetals[i];
+            const flutter = Math.sin(lastTime * p.flutterFreq + p.flutterPhase);
+            const flutter2 = Math.sin(lastTime * (p.flutterFreq * 1.63) + p.flutterPhase * 1.7 + p.y * 0.012);
+            const swirl = Math.sin(lastTime * 0.0014 + p.wobble * 6.28 + p.y * 0.01) * (0.014 + config.ambientDrift);
+            const turbulence = weather.windMph < 8 ? rand(-0.0025, 0.0025) : rand(-0.0012, 0.0012);
+            const pointerKick = pointerForceAt(p.x, p.y);
+            const aeroSide = flutter * (0.006 + p.depth * 0.008) * p.tumbleRate + flutter2 * 0.004 * p.glide;
+            const aeroLift = Math.abs(flutter) * (0.0011 + p.depth * 0.0007);
+
+            p.vx += (windForceX * (0.35 + p.depth * 0.35) * config.windInfluence + ambient.x + swirl + turbulence + aeroSide + pointerKick.fx * 1.2) * frameScale;
+            p.vy += (config.gravityStrength + windForceY * 0.08 + ambient.y + pointerKick.fy * 0.85) * frameScale;
+            p.vy -= aeroLift * frameScale;
+            p.vy -= pointerKick.lift * 0.56 * frameScale;
+            if (pointerKick.lift > 0) {
+              p.spin += (pointerKick.fx * 0.04 + rand(-0.004, 0.004)) * frameScale;
+            }
+
+            if (sweepFactor > 0) {
+              p.vx += windForceX * 0.08 * sweepFactor * frameScale;
+              p.vy -= 0.006 * sweepFactor * frameScale;
+            }
+
+            p.vx *= 0.987;
+            p.vy *= 0.9925 + (flutter2 * 0.0012);
+            p.spin = (p.spin + (p.vx * 0.0022 + swirl * 0.08 + flutter * 0.0065 * p.tumbleRate) * frameScale) * 0.985;
+            p.roll += (p.spin * 0.78 + flutter2 * 0.009 * p.tumbleRate) * frameScale;
+
+            p.x += p.vx * frameScale;
+            p.y += p.vy * frameScale;
+            p.angle += p.spin * frameScale;
+
+            const floorY = floorBaseY() - pileHeightAt(p.x);
+            debugState.settleThresholdY = floorY;
+            if (p.y >= floorY && p.vy > 0) {
+              settlePetal(p);
+              activePetals.splice(i, 1);
+              continue;
+            }
+
+            const outLeft = p.x < -34;
+            const outRight = p.x > width + 34;
+            const outBottom = p.y > height + 20;
+            if (outLeft || outRight || outBottom) {
+              activePetals.splice(i, 1);
+            }
+          }
+        }
+
+        function render() {
+          ctx.clearRect(0, 0, width, height);
+
+          settledPetals.sort((a, b) => a.depth - b.depth);
+          activePetals.sort((a, b) => a.depth - b.depth);
+
+          debugState.renderedSettled = settledPetals.length;
+          debugState.renderedActive = activePetals.length;
+          debugState.firstActiveY = activePetals.length > 0 ? activePetals[0].y : null;
+          debugState.firstSettledY = settledPetals.length > 0 ? settledPetals[0].y : null;
+          let visibleSettled = 0;
+          let visibleActive = 0;
+
+          for (const petal of settledPetals) {
+            if (petal.x >= -16 && petal.x <= width + 16 && petal.y >= -16 && petal.y <= height + 16) {
+              visibleSettled += 1;
+            }
+            drawPetal(petal, true);
+          }
+          for (const petal of activePetals) {
+            if (petal.x >= -20 && petal.x <= width + 20 && petal.y >= -20 && petal.y <= height + 20) {
+              visibleActive += 1;
+            }
+            drawPetal(petal, false);
+          }
+
+          debugState.visibleSettled = visibleSettled;
+          debugState.visibleActive = visibleActive;
+
+          if (debugMode) {
+            ctx.save();
+            ctx.strokeStyle = 'rgba(83, 228, 255, 0.95)';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([8, 4]);
+            ctx.beginPath();
+            ctx.moveTo(0, floorBaseY() + 0.5);
+            ctx.lineTo(width, floorBaseY() + 0.5);
+            ctx.stroke();
+            ctx.restore();
+          }
+        }
+
+        function animate(now) {
+          const dt = Math.min(34, now - lastTime);
+          const frameScale = dt / 16.6667;
+          lastTime = now;
+
+          const pointerAge = now - pointerWind.lastMoveAt;
+          pointerWind.inRange = pointerAge < 200;
+          // Velocity decays fast so it doesn't ghost after cursor stops
+          pointerWind.vx *= 0.82;
+          pointerWind.vy *= 0.82;
+          pointerWind.speed = Math.hypot(pointerWind.vx, pointerWind.vy);
+          pointerWind.strength *= 0.88;
+          if (pointerAge > 380) {
+            pointerWind.active = false;
+            pointerWind.speed = 0;
+            pointerWind.strength = 0;
+          }
+
+          const activation = activationFromThreshold();
+          footer.style.setProperty('--threshold-active', activation.toFixed(3));
+          canvas.style.opacity = (0.45 + activation * 0.45).toFixed(3);
+
+          scrollImpulse *= 0.935;
+          burstEnergy *= config.burstDecay;
+          if (burstEnergy < 0.015) {
+            burstEnergy = 0;
+          }
+          updateAmbient(frameScale);
+
+          const sweepFactor = clamp((weather.windMph - config.sweepThreshold) / 12, 0, 1.3);
+          const windForceX = weather.windX * (0.018 + weather.windMph * 0.0018);
+          const windForceY = weather.windY * (0.01 + weather.windMph * 0.0008);
+
+          spawnPetals(frameScale);
+          updateSettled(frameScale, sweepFactor, windForceX);
+          updateActive(frameScale, windForceX, windForceY, sweepFactor);
+          render();
+
+          if (Date.now() - weatherTimestamp > 1800000) {
+            syncWeather();
+          }
+
+          debugState.activeCount = activePetals.length;
+          debugState.settledCount = settledPetals.length;
+          updateDisplayTelemetry();
+
+          rafId = requestAnimationFrame(animate);
+        }
+
+        let lastScrollY = window.scrollY;
+        let lastScrollTime = performance.now();
+        function onScroll() {
+          const now = performance.now();
+          const deltaY = window.scrollY - lastScrollY;
+          const dy = Math.abs(deltaY);
+          const dt = Math.max(16, now - lastScrollTime);
+          const velocity = dy / dt;
+          scrollImpulse = clamp(scrollImpulse + velocity * 0.16, 0, 1.8);
+
+          const atBottom = atBottomOfPage();
+          // Only trigger when transitioning TO the bottom — scroll up resets, scroll down = new drop.
+          if (atBottom && !wasAtBottom) {
+            triggerBurst(1);
+          }
+          wasAtBottom = atBottom;
+
+          lastScrollY = window.scrollY;
+          lastScrollTime = now;
+        }
+
+        function onWheel(event) {
+          // Wheel does not trigger independent bursts.
+          // Burst is owned by the scroll transition (arrive-at-bottom → tree shake).
+          if (event.deltaY <= 0) {
+            return;
+          }
+        }
+
+        function onTouchStart(event) {
+          if (!event.touches || event.touches.length === 0) {
+            return;
+          }
+          touchY = event.touches[0].clientY;
+        }
+
+        function onTouchMove(event) {
+          if (!event.touches || event.touches.length === 0 || touchY === null) {
+            return;
+          }
+          const nextY = event.touches[0].clientY;
+          const movement = touchY - nextY;
+          touchY = nextY;
+          // Touch scroll impulse feeds into petal physics but does not fire an
+          // independent burst — the scroll-transition handler owns that.
+          scrollImpulse = clamp(scrollImpulse + Math.abs(movement) * 0.008, 0, 1.8);
+        }
+
+        function onTouchEnd() {
+          touchY = null;
+        }
+
+        function onPointerMove(event) {
+          if (!panelState.interactiveEnabled) {
+            return;
+          }
+          const rect = footer.getBoundingClientRect();
+          const now = performance.now();
+          const dt = Math.max(8, now - (pointerWind.timestamp || now));
+          const nextX = event.clientX - rect.left;
+          const nextY = event.clientY - rect.top;
+
+          pointerWind.vx = (nextX - pointerWind.x) / dt;
+          pointerWind.vy = (nextY - pointerWind.y) / dt;
+          pointerWind.speed = Math.hypot(pointerWind.vx, pointerWind.vy);
+
+          // Store wake trail before moving head forward
+          const maxWake = config.pointerWakeLength;
+          pointerWind.wake.unshift({ x: pointerWind.x, y: pointerWind.y });
+          if (pointerWind.wake.length > maxWake) {
+            pointerWind.wake.length = maxWake;
+          }
+
+          pointerWind.x = nextX;
+          pointerWind.y = nextY;
+          pointerWind.timestamp = now;
+          pointerWind.lastMoveAt = now;
+
+          const halo = config.pointerInfluenceRadius;
+          pointerWind.inRange = event.clientX >= rect.left - halo && event.clientX <= rect.right + halo && event.clientY >= rect.top - halo && event.clientY <= rect.bottom + halo;
+          pointerWind.active = pointerWind.inRange;
+
+          pointerWind.strength = clamp(pointerWind.strength + pointerWind.speed * 0.5, 0, 2.4);
+        }
+
+        function onPointerIdle() {
+          pointerWind.inRange = false;
+          pointerWind.active = false;
+        }
+
+        resize();
+        // Scene starts completely empty — no ground petals until the first tree-shake.
+        footer.querySelectorAll('.footer-bloom__static-petal').forEach(el => { el.style.display = 'none'; });
+        panel.dataset.reduced = String(reduceMotion);
+        bindPanelControls();
+        syncPanelMode();
+        syncToggleStates();
+        applyPanelTuning();
+        syncWeather();
+        window.__kirokuBlossomDebug = {
+          getSnapshot() {
+            return {
+              ...debugState,
+              burstEnergy,
+              scrollImpulse,
+              pointerSpeed: pointerWind.speed,
+              atBottom: atBottomOfPage(),
+              weatherLinked: panelState.weatherLinked,
+              ambientEnabled: panelState.ambientEnabled,
+              interactiveEnabled: panelState.interactiveEnabled,
+              windSource: weather.source,
+              windMph: weather.windMph,
+              config: {
+                petalCount: config.petalCount,
+                burstPetalDrop: config.burstPetalDrop,
+                gravityStrength: config.gravityStrength,
+                windInfluence: config.windInfluence,
+                ambientDrift: config.ambientDrift,
+                pointerWindWeight: config.pointerWindWeight
+              }
+            };
+          }
+        };
+
+        if (!reduceMotion) {
+          window.addEventListener('resize', resize, { passive: true });
+
+          // Re-measure when the footer changes size (e.g. Tailwind CDN applies
+          // styles after DOMContentLoaded, shrinking the footer).
+          if (typeof ResizeObserver !== 'undefined') {
+            new ResizeObserver(() => { resize(); }).observe(footer);
+          }
+
+          window.addEventListener('scroll', onScroll, { passive: true });
+          window.addEventListener('wheel', onWheel, { passive: true });
+          window.addEventListener('touchstart', onTouchStart, { passive: true });
+          window.addEventListener('touchmove', onTouchMove, { passive: true });
+          window.addEventListener('touchend', onTouchEnd, { passive: true });
+          window.addEventListener('pointermove', onPointerMove, { passive: true });
+          window.addEventListener('pointercancel', onPointerIdle, { passive: true });
+          window.addEventListener('pointerup', onPointerIdle, { passive: true });
+          window.addEventListener('blur', onPointerIdle);
+
+          resize();
+          rafId = requestAnimationFrame(animate);
+
+          document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+              cancelAnimationFrame(rafId);
+              return;
+            }
+            lastTime = performance.now();
+            rafId = requestAnimationFrame(animate);
+          });
+        } else {
+          updateDisplayTelemetry();
+        }
+      }
+
+      initFooterCherryBlossom();
     });
   </script>
 </body>
