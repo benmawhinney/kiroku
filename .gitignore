@@ -19,3 +19,7 @@ __pycache__/
 # System files
 .idea/
 .vscode/
+
+# Test-result artifacts
+test-results/*.png
+test-results/*.csv
